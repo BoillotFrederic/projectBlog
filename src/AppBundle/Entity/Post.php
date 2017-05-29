@@ -19,7 +19,7 @@ class Post
     }
 
     /**
-     * @ORM\PreUpdate()
+     * @ORM\modified()
      */
     public function modified()
     {

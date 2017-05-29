@@ -87,7 +87,7 @@ class PostController extends Controller
             $post = $em->getRepository('AppBundle:Post')->find($post->getId());
 
             if (!$post)
-            throw $this->createNotFoundException('Pas de post pour l\'id ' . $id);
+            throw $this->createNotFoundException('Pas de post pour l\'id ' . $post->getId());
 
             $post->setText($request->get('text'));
             $post->fieldModified();

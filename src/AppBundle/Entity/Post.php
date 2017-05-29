@@ -12,6 +12,20 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Post
 {
+    public function __construct()
+    {
+        $this->created = new \DateTime();
+        $this->modified = new \DateTime();
+    }
+
+    /**
+     * @ORM\PreUpdate()
+     */
+    public function modified()
+    {
+        $this->modified = new \DateTime();
+    }
+
     /**
      * @var int
      *

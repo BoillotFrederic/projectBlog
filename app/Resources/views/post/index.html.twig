@@ -11,8 +11,8 @@
     <p>
       {{ post.text }}
     </p>
-    <span>{% if post.modified %}{{ post.modified|date('Y-m-d H:i:s') }}{% endif %}</span>
-    <span>{% if post.created %}{{ post.created|date('Y-m-d H:i:s') }}{% endif %}</span>
+    <span>Modifié le : {{ post.modified|date('Y-m-d H:i:s') }}</span>
+    <span>Créé le : {{ post.created|date('Y-m-d H:i:s') }}</span>
     <ul>
       <li>
         <form name="form" method="post" action="/post/{{ post.id }}">

@@ -90,6 +90,7 @@ class PostController extends Controller
             throw $this->createNotFoundException('Pas de post pour l\'id ' . $id);
 
             $post->setText($request->get('text'));
+            $post->modified();
 
             $em->flush();
 

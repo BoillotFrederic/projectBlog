@@ -10,16 +10,14 @@
       </div>
       <div>
         <label for="text" class="required">Text</label>
-        <textarea id="text" name="text" required="required">gh</textarea>
+        <textarea id="text" name="text" required="required">{{ post.text }}</textarea>
       </div>
       <input type="submit" value="Edit" />
     </form>
 
-
-
     <ul>
-        <li>
-            <a href="{{ path('post_index') }}">Back to the list</a>
-        </li>
+      <li>
+        <a href="{{ path('post_index') }}">Back to the list</a>
+      </li>
     </ul>
 {% endblock %}

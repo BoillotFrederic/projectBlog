@@ -19,9 +19,9 @@ class Post
     }
 
     /**
-     * @ORM\modified()
+     * @ORM\fieldModified()
      */
-    public function modified()
+    public function fieldModified()
     {
         $this->modified = new \DateTime();
     }

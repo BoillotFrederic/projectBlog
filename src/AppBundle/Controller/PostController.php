@@ -81,20 +81,23 @@ class PostController extends Controller
      */
     public function editAction(Request $request, Post $post)
     {
-        $deleteForm = $this->createDeleteForm($post);
-        $editForm = $this->createForm('AppBundle\Form\PostType', $post);
-        $editForm->handleRequest($request);
+        if ($request->getMethod() == 'POST') {
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $em = $this->getDoctrine()->getManager();
+            $post = $em->getRepository('AppBundle:Post')->find($post->getId());
 
-            return $this->redirectToRoute('post_edit', array('id' => $post->getId()));
+            if (!$post)
+            throw $this->createNotFoundException('Pas de post pour l\'id ' . $id);
+
+            $post->setText($request->get('text'));
+
+            $em->flush();
+
+            return $this->redirectToRoute('post_index');
         }
 
         return $this->render('post/edit.html.twig', array(
             'post' => $post,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 

@@ -23,12 +23,7 @@ class PostController extends Controller
     public function indexAction()
     {
        $em = $this->getDoctrine()->getManager();
-
-<<<<<<< HEAD
-        $posts = $em->getRepository('AppBundle:Post')->findBy(array(), array('created'=>'desc'));
-=======
-       $posts = $em->getRepository('AppBundle:Post')->findAll();
->>>>>>> 8a2905dcb7bdad4204c77e4080a6ed7bcfca3f9e
+       $posts = $em->getRepository('AppBundle:Post')->findBy(array(), array('created'=>'desc'));
 
        return $this->render('post/index.html.twig', array(
             'posts' => $posts,
@@ -49,14 +44,9 @@ class PostController extends Controller
            $post->setText($request->get('text'));
            $post->setUserId(1);
 
-<<<<<<< HEAD
-            return $this->redirectToRoute('post_index');
-        }
-=======
            $em = $this->getDoctrine()->getManager();
            $em->persist($post);
            $em->flush();
->>>>>>> 8a2905dcb7bdad4204c77e4080a6ed7bcfca3f9e
 
            return $this->redirectToRoute('post_index');
 

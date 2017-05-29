@@ -22,11 +22,11 @@ class PostController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
+       $em = $this->getDoctrine()->getManager();
 
-        $posts = $em->getRepository('AppBundle:Post')->findAll();
+       $posts = $em->getRepository('AppBundle:Post')->findAll();
 
-        return $this->render('post/index.html.twig', array(
+       return $this->render('post/index.html.twig', array(
             'posts' => $posts,
         ));
     }
@@ -34,43 +34,25 @@ class PostController extends Controller
     /**
      * Creates a new post entity.
      *
-     * @Route("/new", name="post_new")
+     * @Route("/new/", name="post_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
-        $post = new Post();
-        $form = $this->createForm('AppBundle\Form\PostType', $post);
-        $form->handleRequest($request);
+        if ($request->getMethod() == 'POST') {
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($post);
-            $em->flush();
+           $post = new Post();
+           $post->setText($request->get('text'));
+           $post->setUserId(1);
 
-            return $this->redirectToRoute('post_show', array('id' => $post->getId()));
+           $em = $this->getDoctrine()->getManager();
+           $em->persist($post);
+           $em->flush();
+
+           return $this->redirectToRoute('post_index');
+
         }
-
-        return $this->render('post/new.html.twig', array(
-            'post' => $post,
-            'form' => $form->createView(),
-        ));
-    }
-
-    /**
-     * Finds and displays a post entity.
-     *
-     * @Route("/{id}", name="post_show")
-     * @Method("GET")
-     */
-    public function showAction(Post $post)
-    {
-        $deleteForm = $this->createDeleteForm($post);
-
-        return $this->render('post/show.html.twig', array(
-            'post' => $post,
-            'delete_form' => $deleteForm->createView(),
-        ));
+        return $this->render('post/new.html.twig');
     }
 
     /**

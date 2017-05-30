@@ -12,6 +12,17 @@ body{
   text-align:center;
 }
 
+/*Lists*/
+ul{
+  list-style:none;
+}
+
+/*Links*/
+a{
+  text-decoration:none;
+  color:darkgreen;
+}
+
 /*Title*/
 h1{
   text-align:center;
@@ -159,23 +170,28 @@ h1{
 }
 
 /*Forms*/
-#formPost{
+#formPost,
+#formUsers{
   background-color:rgba(255, 255, 255, 0.5);
   border:3px solid rgba(0, 0, 0, 0.3);
   padding:10px;
   width:70%;
   margin:auto;
 }
-#formPost label{
+#formPost label,
+#formUsers label{
   display:block;
   text-align:left;
 }
-#formPost textarea{
+#formPost textarea,
+#formUsers textarea{
   width:100%;
   height:200px;
 }
 #formPost textarea,
-#formPost input{
+#formUsers textarea,
+#formPost input,
+#formUsers input{
   margin:10px 0 10px 0;
 }
 

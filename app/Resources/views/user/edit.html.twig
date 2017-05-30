@@ -3,7 +3,7 @@
 {% block body %}
     <h1>Editer un utiliser</h1>
 
-    <form method="post">
+    <form id="formUsers" method="post">
       <div>
         <label for="pseudo">Pseudo</label>
         <input type="text" id="pseudo" name="pseudo" value="{{ user.name }}">
@@ -21,7 +21,7 @@
         <input type="password" id="repassword" name="repassword" value="">
       </div>
       <div>
-        <input type="submit" value="Envoyer">
+        <input type="submit" value="Editer">
       </div>
     </form>
 

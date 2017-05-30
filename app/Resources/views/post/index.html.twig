@@ -20,11 +20,12 @@
     {% if app.session.get('connected') %}
     <ul>
       <li>
-        <form name="form" method="post" action="/post/{{ post.id }}">
+        <a href="{{ path('post_delete', { 'id': post.id }) }}">Supprimer</a>
+        <!-- <form name="form" method="post" action="/post/{{ post.id }}">
           <input type="hidden" name="_method" value="DELETE" />
           <input type="submit" value="Supprimer">
           <input type="hidden" id="form__token" name="form[_token]" value="HeubiGfVccFj51yvZSIvczCZvYxGtBOAbNp-11ZUMG0" />
-        </form>
+        </form> -->
       </li>
       <li>
         <a href="{{ path('post_edit', { 'id': post.id }) }}">Editer</a>

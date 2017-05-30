@@ -75,6 +75,7 @@ class PostController extends Controller
 
             $em->flush();
 
+            $this->addFlash('success', 'L\'article a bien été modifié !');
             return $this->redirectToRoute('post_index');
         }
 
@@ -84,22 +85,23 @@ class PostController extends Controller
     }
 
     /**
-     * Deletes a post entity.
+     * Deletes a get entity.
      *
      * @Route("/{id}", name="post_delete")
-     * @Method("DELETE")
+     * @Method("GET")
      */
-    public function deleteAction(Request $request, Post $post)
+    public function deleteAction(Request $request, $id)
     {
-        $form = $this->createDeleteForm($post);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $post = $em->getRepository('AppBundle:Post')->find($id);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($post);
-            $em->flush();
-        }
+        if (!$post)
+        throw $this->createNotFoundException('Pas de produit pour l\'id ' . $id);
 
+        $em->remove($post);
+        $em->flush();
+
+        $this->addFlash('success', 'L\'article a bien été supprimé !');
         return $this->redirectToRoute('post_index');
     }
 

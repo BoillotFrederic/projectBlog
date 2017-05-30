@@ -89,10 +89,10 @@ h1{
 }
 #success
 {
-  background-color:rgba(0, 100, 0, 0.3);
+  background-color:rgba(0, 100, 0, 0.9);
 }
 #error{
-  background-color:rgba(100, 0, 0, 0.3);
+  background-color:rgba(100, 0, 0, 0.9);
 }
 
 /*Posts*/

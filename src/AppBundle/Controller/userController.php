@@ -5,7 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\user;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * User controller.
@@ -56,6 +57,43 @@ class userController extends Controller
         }
 
         return $this->render('user/new.html.twig');
+    }
+
+    /**
+     * Connexion
+     *
+     * @Route("/connect", name="user_connect")
+     * @Method("POST")
+     */
+    public function connect(Request $request)
+    {
+      if ($request->getMethod() == 'POST') {
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('AppBundle:user')->findBy(array('name' => $request->get('pseudo')));
+
+        if(isset($user[0]) && $user[0]->getPassword() == md5($request->get('password'))){
+          $this->get('session')->set('connected', true);
+          $this->addFlash('success', 'Bonjour ' . $user[0]->getName() . ', Vous êtes connecté !');
+          return $this->redirectToRoute('post_index');
+        }
+        else{
+          $this->addFlash('error', 'La connexion a échoué !');
+          return $this->redirectToRoute('post_index');
+        }
+      }
+    }
+
+    /**
+     * Disconnect
+     *
+     * @Route("/disconnect", name="user_disconnect")
+     * @Method("GET")
+     */
+    public function disconnect()
+    {
+      $this->get('session')->set('connected', false);
+      $this->addFlash('success', 'Vous avez été deconnecté !');
+      return $this->redirectToRoute('post_index');
     }
 
     /**

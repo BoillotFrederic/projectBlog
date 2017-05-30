@@ -2,12 +2,56 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}{% endblock %}Project Blog</title>
         {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+      {% for msg in app.session.flashbag.get('success') %}
+      <div id="success">
+        <strong>{{ msg }}</strong>
+      </div>
+      {% endfor %}
+      {% for msg in app.session.flashbag.get('error') %}
+      <div id="error">
+        <strong>{{ msg }}</strong>
+      </div>
+      {% endfor %}
+      <nav>
+        <div id="navBar">
+          <ul>
+            {% if app.session.get('connected') %}
+            <li>
+              <a href="{{ path('user_disconnect') }}">
+                Deconnexion
+              </a>
+            </li>
+            {% else %}
+            <li>
+              <a id="connect" href="#">
+                Connexion
+              </a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+        <div id="connectBox">
+          <form action="{{ path('user_connect') }}" method="post">
+            <label for="pseudo">Pseudo</label>
+            <input id="pseudo" name="pseudo" type="text">
+            <label for="password">Mot de passe</label>
+            <input id="password" name="password" type="password">
+            <input id="btnConnect" type="submit" value="Connexion">
+          </form>
+        </div>
+      </nav>
+      <main>
         {% block body %}{% endblock %}
+      </main>
+      <footer>
+      </footer>
         {% block javascripts %}{% endblock %}
+        <script src="{{ asset('js/jScript.js') }}" type="text/javascript"></script>
     </body>
 </html>

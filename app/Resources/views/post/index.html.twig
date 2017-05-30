@@ -3,16 +3,21 @@
 {% block body %}
   <h1>Project Blog</h1>
 
-  <a href="{{ path('post_new') }}">Créer un nouveau post</a>
+  {% if app.session.get('connected') %}
+  <a id="btnAdd" href="{{ path('post_new') }}">Créer un nouveau post</a>
+  {% endif %}
 
   {% for post in posts %}
+  <div class="time">
+    <span>Modifié le : {{ post.modified|date('Y-m-d H:i:s') }}</span>
+    <span>Créé le : {{ post.created|date('Y-m-d H:i:s') }}</span>
+  </div>
   <div class="posts">
     <img src="{{ post.img }}" alt="" />
     <p>
       {{ post.text }}
     </p>
-    <span>Modifié le : {{ post.modified|date('Y-m-d H:i:s') }}</span>
-    <span>Créé le : {{ post.created|date('Y-m-d H:i:s') }}</span>
+    {% if app.session.get('connected') %}
     <ul>
       <li>
         <form name="form" method="post" action="/post/{{ post.id }}">
@@ -25,6 +30,7 @@
         <a href="{{ path('post_edit', { 'id': post.id }) }}">Editer</a>
       </li>
     </ul>
+    {% endif %}
   </div>
   {% endfor %}
 {% endblock %}

@@ -1,0 +1,159 @@
+*{
+  margin:0;
+  padding:0;
+}
+
+body{
+  position:relative;
+  padding-top:30px;
+  background-image:url('../bg.jpg');
+  background-size:100%;
+  background-attachment:fixed;
+  text-align:center;
+}
+
+/*Title*/
+h1{
+  text-align:center;
+  padding:30px;
+  color:white;
+}
+
+/*NavBar*/
+#navBar{
+  position:fixed;
+  top:0;
+  left:0;
+  height:30px;
+  background-color:rgba(0, 0, 0, 0.2);
+  border-bottom:3px solid rgba(0, 0, 0, 0.3);
+  width:100%;
+}
+#navBar ul{
+  text-align:right;
+}
+#navBar li{
+  display:inline-block;
+  line-height:30px;
+  margin-right:20px;
+}
+#navBar a{
+  color:white;
+  text-decoration:none;
+  outline:none;
+}
+#navBar a:hover{
+  color:yellow;
+}
+
+/*Connexion*/
+#connectBox{
+  color:white;
+  display:none;
+  position:absolute;
+  top:33px;
+  right:0;
+  width:200px;
+  background-color:rgba(0, 0, 0, 0.2);
+  border-left:3px solid rgba(0, 0, 0, 0.3);
+  border-bottom:3px solid rgba(0, 0, 0, 0.3);
+  padding:10px;
+  text-align:center;
+}
+#connectBox label{
+  display:block;
+  text-align:left;
+  margin:5px;
+}
+#connectBox input[type="text"],
+#connectBox input[type="password"]{
+  display:block;
+  width:90%;
+}
+#btnConnect{
+  margin-top:20px;
+  display:inline-block;
+}
+
+/*Error and success*/
+#success,
+#error{
+  border:3px solid rgba(0, 0, 0, 0.3);
+  position:fixed;
+  width:400px;
+  left:calc(50% - 200px);
+  top:200px;
+  padding:50px;
+  color:white;
+  text-align:center;
+}
+#success
+{
+  background-color:rgba(0, 100, 0, 0.3);
+}
+#error{
+  background-color:rgba(100, 0, 0, 0.3);
+}
+
+/*Posts*/
+.posts{
+  position:relative;
+  width:70%;
+  background-color:rgba(255, 255, 255, 0.5);
+  border-bottom:3px solid rgba(0, 0, 0, 0.3);
+  border-left:3px solid rgba(0, 0, 0, 0.3);
+  border-right:3px solid rgba(0, 0, 0, 0.3);
+  padding:10 10px 15px 10px;
+  margin:0 auto 20px auto;
+  min-height:60px;
+}
+.posts ul{
+  position:absolute;
+  right:0;
+  bottom:10px;
+  list-style:none;
+}
+.posts li{
+  display:inline-block;
+  margin-right:10px;
+}
+.posts input,
+.posts a{
+  font-size:16px;
+  font-family:sans-serif;
+  text-decoration:none;
+  color:black;
+  background-color:white;
+  padding:2px 7px 2px 7px;
+  border:1px solid darkgrey;
+  border-radius:7px;
+}
+.time{
+  margin:20px auto 0 auto;
+  width:70%;
+  background-color:rgba(0, 0, 0, 0.3);
+  border-top:3px solid rgba(0, 0, 0, 0.1);
+  border-right:3px solid rgba(0, 0, 0, 0.1);
+  border-left:3px solid rgba(0, 0, 0, 0.1);
+  line-height:30px;
+  text-align:left;
+}
+.time span{
+  padding-left:10px;
+}
+
+/*Button*/
+#btnAdd{
+  display:inline-block;
+  margin:40px auto 40px auto;
+  padding:30px;
+  background-color:white;
+  border-radius:12px;
+  font-size:1.5em;
+  text-decoration:none;
+  color:black;
+}
+#btnAdd:hover{
+  background-color:black;
+  color:white;
+}

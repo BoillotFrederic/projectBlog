@@ -52,6 +52,7 @@ class userController extends Controller
             $em->persist($user);
             $em->flush();
 
+            $this->addFlash('success', 'L\'utilisateur a bien été créé !');
             return $this->redirectToRoute('post_index');
           }
         }
@@ -137,6 +138,7 @@ class userController extends Controller
 
               $em->flush();
 
+              $this->addFlash('success', 'L\'utilisateur a bien été mise à jour !');
               return $this->redirectToRoute('user_index');
             }
         }
@@ -162,6 +164,8 @@ class userController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($user);
             $em->flush();
+
+            $this->addFlash('success', 'L\'utilisateur a bien été supprimé !');
         }
 
         return $this->redirectToRoute('user_index');

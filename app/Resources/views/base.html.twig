@@ -23,6 +23,14 @@
           <ul>
             {% if app.session.get('connected') %}
             <li>
+              <a href="{{ path('post_index') }}">
+                Accueil
+              </a>
+              |
+              <a href="{{ path('user_index') }}">
+                Utilisateurs
+              </a>
+              |
               <a href="{{ path('user_disconnect') }}">
                 Deconnexion
               </a>

@@ -24,12 +24,7 @@ class PostController extends Controller
     public function indexAction()
     {
        $em = $this->getDoctrine()->getManager();
-<<<<<<< HEAD
-       $posts = $em->getRepository('AppBundle:Post')->findBy(array(), array('created'=>'desc'));
-=======
-
-        $posts = $em->getRepository('AppBundle:Post')->findBy(array(), array('created'=>'desc'));
->>>>>>> fa49e10cd4bc8fb69bfe598cba12d83e41006e0a
+      $posts = $em->getRepository('AppBundle:Post')->findBy(array(), array('created'=>'desc'));
 
        return $this->render('post/index.html.twig', array(
             'posts' => $posts,
@@ -55,7 +50,7 @@ class PostController extends Controller
            $fileName = $this->get('app.article_uploader')->upload($file);
 
            $post->setImg($fileName);
-     
+
            $em = $this->getDoctrine()->getManager();
            $em->persist($post);
            $em->flush();
@@ -80,7 +75,6 @@ class PostController extends Controller
 
             if (!$post)
             throw $this->createNotFoundException('Pas de post pour l\'id ' . $post->getId());
-<<<<<<< HEAD
 
             $post->setText($request->get('text'));
             $post->fieldModified();
@@ -88,14 +82,6 @@ class PostController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'L\'article a bien été modifié !');
-=======
-
-            $post->setText($request->get('text'));
-            $post->fieldModified();
-
-            $em->flush();
-
->>>>>>> fa49e10cd4bc8fb69bfe598cba12d83e41006e0a
             return $this->redirectToRoute('post_index');
         }
 

@@ -1,15 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<<<<<<< HEAD
     <h1>Editer un post</h1>
 
     <form id="formPost" name="post" method="post">
-=======
-    <h1>Editer l'article</h1>
-
-    <form name="post" method="post">
->>>>>>> fa49e10cd4bc8fb69bfe598cba12d83e41006e0a
       <div>
         <label for="img" class="required">Photo</label>
         <input type="file" id="img" name="appbundle_post[img]" />
@@ -18,17 +12,6 @@
         <label for="text" class="required">Texte</label>
         <textarea id="text" name="text" required="required">{{ post.text }}</textarea>
       </div>
-<<<<<<< HEAD
       <input type="submit" value="Editer" />
     </form>
-=======
-      <input type="submit" value="Edit" />
-    </form>
-
-    <ul>
-      <li>
-        <a href="{{ path('post_index') }}">Retour sur le blog</a>
-      </li>
-    </ul>
->>>>>>> fa49e10cd4bc8fb69bfe598cba12d83e41006e0a
 {% endblock %}

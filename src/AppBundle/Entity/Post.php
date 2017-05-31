@@ -60,6 +60,13 @@ class Post
     private $text;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="draftCopy", type="integer")
+     */
+    private $draftCopy;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="modified", type="datetime")
@@ -202,5 +209,29 @@ class Post
     public function getCreated()
     {
         return $this->created;
+    }
+
+    /**
+     * Get draftCopy
+     *
+     * @return int
+     */
+    public function getDraftCopy()
+    {
+        return $this->draftCopy;
+    }
+
+    /**
+     * Set draftCopy
+     *
+     * @param int $draftCopy
+     *
+     * @return post
+     */
+    public function setDraftCopy($draftCopy)
+    {
+        $this->draftCopy = $draftCopy;
+
+        return $this;
     }
 }

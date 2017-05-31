@@ -57,6 +57,20 @@ h1{
 #navBar a:hover{
   color:yellow;
 }
+#navBar #userLoad{
+  position:relative;
+}
+#navBar #userLoad img{
+  position:absolute;
+  left:calc(50% - 50px);
+  top:30px;
+  height:100px;
+  width:100px;
+  display:none;
+}
+#navBar #userLoad:hover img{
+  display:block;
+}
 
 /*Connexion*/
 #connectBox{
@@ -157,9 +171,20 @@ h1{
   border-left:3px solid rgba(0, 0, 0, 0.1);
   line-height:30px;
   text-align:left;
+  height:30px;
 }
 .time span{
   padding-left:10px;
+  padding-right:10px;
+}
+.time .spanLeft{
+  float:left;
+}
+.time .spanRight{
+  float:right;
+}
+.draftCopy{
+  background-color:rgba(0, 0, 0, 0.5);
 }
 
 /*Button*/

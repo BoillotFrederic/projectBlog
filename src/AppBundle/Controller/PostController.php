@@ -47,6 +47,7 @@ class PostController extends Controller
            $post = new Post();
            $post->setText($request->get('text'));
            $post->setUserId($this->get('session')->get('userId'));
+           $post->setDraftCopy(1);
            $fileName = $this->get('app.article_uploader')->upload($request->files->get('img'));
 
            $post->setImg($fileName);
@@ -82,6 +83,13 @@ class PostController extends Controller
             throw $this->createNotFoundException('Pas de post pour l\'id ' . $post->getId());
 
             $post->setText($request->get('text'));
+
+            $fileName = $this->get('app.article_uploader')->upload($request->files->get('img'));
+            if($fileName){
+              @unlink('../web/uploads/'. $post->getImg());
+              $post->setImg($fileName);
+            }
+
             $post->fieldModified();
 
             $em->flush();
@@ -98,7 +106,7 @@ class PostController extends Controller
     /**
      * Deletes a get entity.
      *
-     * @Route("/{id}", name="post_delete")
+     * @Route("/{id}/delete", name="post_delete")
      * @Method("GET")
      */
     public function deleteAction(Request $request, $id)
@@ -117,6 +125,54 @@ class PostController extends Controller
 
         $this->addFlash('success', 'L\'article a bien été supprimé !');
         return $this->redirectToRoute('post_index');
+    }
+
+    /**
+     * Publish.
+     *
+     * @Route("/{id}/publish", name="post_publish")
+     * @Method("GET")
+     */
+    public function publishAction(Request $request, $id)
+    {
+      if($this->get('session')->get('userPermission') != 2)
+      return $this->redirectToRoute('post_index');
+
+      $em = $this->getDoctrine()->getManager();
+      $post = $em->getRepository('AppBundle:Post')->find($id);
+
+      if (!$post)
+      throw $this->createNotFoundException('Pas de post pour l\'id ' . $id);
+
+      $post->setDraftCopy(0);
+      $em->flush();
+
+      $this->addFlash('success', 'L\'article a bien été publié !');
+      return $this->redirectToRoute('post_index');
+    }
+
+    /**
+     * hide.
+     *
+     * @Route("/{id}/hide", name="post_hide")
+     * @Method("GET")
+     */
+    public function hideAction(Request $request, $id)
+    {
+      if($this->get('session')->get('userPermission') != 2)
+      return $this->redirectToRoute('post_index');
+
+      $em = $this->getDoctrine()->getManager();
+      $post = $em->getRepository('AppBundle:Post')->find($id);
+
+      if (!$post)
+      throw $this->createNotFoundException('Pas de post pour l\'id ' . $id);
+
+      $post->setDraftCopy(1);
+      $em->flush();
+
+      $this->addFlash('success', 'L\'article a bien été masqué !');
+      return $this->redirectToRoute('post_index');
     }
 
     /**

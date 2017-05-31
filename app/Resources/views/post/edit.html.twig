@@ -3,10 +3,10 @@
 {% block body %}
     <h1>Editer un post</h1>
 
-    <form id="formPost" name="post" method="post">
+    <form id="formPost" name="post" method="post" enctype="multipart/form-data">
       <div>
         <label for="img" class="required">Photo</label>
-        <input type="file" id="img" name="appbundle_post[img]" />
+        <input type="file" id="img" name="img" />
       </div>
       <div>
         <label for="text" class="required">Texte</label>

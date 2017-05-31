@@ -8,12 +8,17 @@
   {% endif %}
 
   {% for post in posts %}
+  {% if app.session.get('userPermission') == 2 or post.draftCopy != 1 %}
   <div class="time">
-    <span>Modifié le : {{ post.modified|date('Y-m-d H:i:s') }}</span>
-    <span>Créé le : {{ post.created|date('Y-m-d H:i:s') }}</span>
+    {% if post.modified != post.created %}
+    <span class="spanRight">Modifié le {{ post.modified|date('d/m/Y H:i') }}</span>
+    <span class="spanLeft">Créé le {{ post.created|date('d/m/Y H:i') }}</span>
+    {% else %}
+    <span class="spanLeft">Créé le {{ post.created|date('d/m/Y H:i') }}</span>
+    {% endif %}
   </div>
-  <div class="posts">
-    <img src="/uploads/articles/{{ post.img }}" alt="" />
+  <div class="posts{% if post.draftCopy == 1 %} draftCopy{% endif %}">
+    <img src="/uploads//{{ post.img }}" alt="" />
     <p>
       {{ post.text }}
     </p>
@@ -23,10 +28,18 @@
         <a href="{{ path('post_delete', { 'id': post.id }) }}">Supprimer</a>
       </li>
       <li>
+        {% if post.draftCopy == 1 %}
+        <a href="{{ path('post_publish', { 'id': post.id }) }}">Publier</a>
+        {% else %}
+        <a href="{{ path('post_hide', { 'id': post.id }) }}">Masquer</a>
+        {% endif %}
+      </li>
+      <li>
         <a href="{{ path('post_edit', { 'id': post.id }) }}">Editer</a>
       </li>
     </ul>
     {% endif %}
   </div>
+  {% endif %}
   {% endfor %}
 {% endblock %}

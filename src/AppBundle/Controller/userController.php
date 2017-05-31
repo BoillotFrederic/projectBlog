@@ -77,6 +77,7 @@ class userController extends Controller
           $this->get('session')->set('connected', true);
           $this->get('session')->set('userId', $user[0]->getId());
           $this->get('session')->set('userName', $user[0]->getName());
+          $this->get('session')->set('userAvatar', $user[0]->getAvatar());
           $this->get('session')->set('userPermission', $user[0]->getPermission());
 
           $this->addFlash('success', 'Bonjour ' . $user[0]->getName() . ', Vous êtes connecté !');
@@ -149,13 +150,19 @@ class userController extends Controller
               throw $this->createNotFoundException('Pas de utilisateur pour l\'id ' . $user->getId());
 
               $user->setEmail($request->get('email'));
-              $user->setAvatar('');
 
               if($this->get('session')->get('userPermission') == 2)
               $user->setName($request->get('pseudo'));
 
               if($request->get('password'))
               $user->setPassword($request->get('password'));
+
+              $fileName = $this->get('app.article_uploader')->upload($request->files->get('avatar'));
+              if($fileName){
+                @unlink('../web/uploads/'. $user->getAvatar());
+                $user->setAvatar($fileName);
+                $this->get('session')->set('userAvatar', $fileName);
+              }
 
               $em->flush();
 

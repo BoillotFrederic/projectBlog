@@ -3,7 +3,7 @@
 {% block body %}
     <h1>Editer un utiliser</h1>
 
-    <form id="formUsers" method="post">
+    <form id="formUsers" method="post" enctype="multipart/form-data">
       {% if app.session.get('userPermission') == 2 %}
       <div>
         <label for="pseudo">Pseudo</label>
@@ -21,6 +21,10 @@
       <div>
         <label for="repassword">Retaper votre mot de passe</label>
         <input type="password" id="repassword" name="repassword" value="">
+      </div>
+      <div>
+        <label for="avatar" class="required">Avatar</label>
+        <input type="file" id="avatar" name="avatar" />
       </div>
       <div>
         <input type="submit" value="Editer">

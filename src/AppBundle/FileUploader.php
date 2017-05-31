@@ -8,7 +8,7 @@ class FileUploader
 
     public function __construct($targetDir)
     {
-        $this->targetDir = '../web/uploads/articles';
+        $this->targetDir = '../web/uploads';
     }
 
     public function upload(UploadedFile $file)

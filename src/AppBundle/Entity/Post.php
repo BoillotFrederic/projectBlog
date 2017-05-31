@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Post
@@ -12,6 +14,21 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Post
 {
+    public function __construct()
+    {
+        $this->created = new \DateTime();
+        $this->modified = new \DateTime();
+    }
+
+    /**
+     * @ORM\fieldModified()
+     */
+    public function fieldModified()
+    {
+        $this->modified = new \DateTime();
+    }
+
+
     /**
      * @var int
      *
@@ -32,6 +49,7 @@ class Post
      * @var string
      *
      * @ORM\Column(name="img", type="string", length=255)
+     *
      */
     private $img;
 

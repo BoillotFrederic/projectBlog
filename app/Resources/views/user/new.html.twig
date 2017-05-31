@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Créer un compte</h1>
+
+    <form method="post">
+      <div>
+        <label for="pseudo">Pseudo</label>
+        <input type="text" id="pseudo" name="pseudo" value="">
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" value="">
+      </div>
+      <div>
+        <label for="password">Mot de passe</label>
+        <input type="text" id="password" name="password" value="">
+      </div>
+      <div>
+        <label for="repassword">Retaper votre mot de passe</label>
+        <input type="text" id="repassword" name="repassword" value="">
+      </div>
+      <div>
+        <input type="submit" value="Envoyer">
+      </div>
+    </form>
+
+    <ul>
+        <li>
+            <a href="{{ path('post_index') }}">Retour au blog</a>
+        </li>
+    </ul>
+{% endblock %}

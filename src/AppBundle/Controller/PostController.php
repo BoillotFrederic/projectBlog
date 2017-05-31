@@ -6,7 +6,8 @@ use AppBundle\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
-
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 /**
  * Post controller.
  *
@@ -24,7 +25,7 @@ class PostController extends Controller
     {
        $em = $this->getDoctrine()->getManager();
 
-       $posts = $em->getRepository('AppBundle:Post')->findAll();
+        $posts = $em->getRepository('AppBundle:Post')->findBy(array(), array('created'=>'desc'));
 
        return $this->render('post/index.html.twig', array(
             'posts' => $posts,
@@ -42,13 +43,18 @@ class PostController extends Controller
         if ($request->getMethod() == 'POST') {
 
            $post = new Post();
+           $img=$post->setImg($request->get('img'));
+           $file = new File($img);
            $post->setText($request->get('text'));
            $post->setUserId(1);
+           $post->$file->setImg($request->get('img'));
+           $fileName = $this->get('app.article_uploader')->upload($file);
 
+           $post->setImg($fileName);
+     
            $em = $this->getDoctrine()->getManager();
            $em->persist($post);
            $em->flush();
-
            return $this->redirectToRoute('post_index');
 
         }
@@ -63,20 +69,24 @@ class PostController extends Controller
      */
     public function editAction(Request $request, Post $post)
     {
-        $deleteForm = $this->createDeleteForm($post);
-        $editForm = $this->createForm('AppBundle\Form\PostType', $post);
-        $editForm->handleRequest($request);
+        if ($request->getMethod() == 'POST') {
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $em = $this->getDoctrine()->getManager();
+            $post = $em->getRepository('AppBundle:Post')->find($post->getId());
 
-            return $this->redirectToRoute('post_edit', array('id' => $post->getId()));
+            if (!$post)
+            throw $this->createNotFoundException('Pas de post pour l\'id ' . $post->getId());
+
+            $post->setText($request->get('text'));
+            $post->fieldModified();
+
+            $em->flush();
+
+            return $this->redirectToRoute('post_index');
         }
 
         return $this->render('post/edit.html.twig', array(
             'post' => $post,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 

@@ -3,7 +3,7 @@
 {% block body %}
   <h1>Project Blog</h1>
 
-  {% if app.session.get('connected') %}
+  {% if app.session.get('userPermission') == 2 %}
   <a id="btnAdd" href="{{ path('post_new') }}">Créer un nouveau post</a>
   {% endif %}
 
@@ -13,11 +13,11 @@
     <span>Créé le : {{ post.created|date('Y-m-d H:i:s') }}</span>
   </div>
   <div class="posts">
-    <img src="{{ post.img }}" alt="" />
+    <img src="/uploads/articles/{{ post.img }}" alt="" />
     <p>
       {{ post.text }}
     </p>
-    {% if app.session.get('connected') %}
+    {% if app.session.get('userPermission') == 2 %}
     <ul>
       <li>
         <a href="{{ path('post_delete', { 'id': post.id }) }}">Supprimer</a>

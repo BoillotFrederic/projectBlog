@@ -49,6 +49,13 @@ class user
      */
     private $avatar;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="permission", type="integer")
+     */
+    private $permission;
+
 
     /**
      * Get id
@@ -154,5 +161,29 @@ class user
     public function getAvatar()
     {
         return $this->avatar;
+    }
+
+    /**
+     * Get permission
+     *
+     * @return int
+     */
+    public function getPermission()
+    {
+        return $this->permission;
+    }
+
+    /**
+     * Set permission
+     *
+     * @param int $permission
+     *
+     * @return user
+     */
+    public function setPermission($permission)
+    {
+        $this->permission = $permission;
+
+        return $this;
     }
 }

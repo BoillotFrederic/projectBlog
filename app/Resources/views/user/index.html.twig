@@ -1,7 +1,7 @@
-{% if app.session.get('connected') %}
 {% extends 'base.html.twig' %}
 
 {% block body %}
+{% if app.session.get('userPermission') == 2 %}
     <h1>Liste des utilisateurs</h1>
 
     <a id="btnAdd" href="{{ path('user_new') }}">Créer un nouvel utilisateur</a>
@@ -30,5 +30,5 @@
         {% endfor %}
         </tbody>
     </table>
-{% endblock %}
 {% endif %}
+{% endblock %}

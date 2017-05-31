@@ -5,7 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 /**
@@ -39,22 +40,23 @@ class PostController extends Controller
      */
     public function newAction(Request $request)
     {
-        if ($request->getMethod() == 'POST') {
+      if($this->get('session')->get('userPermission') != 2)
+      return $this->redirectToRoute('post_index');
 
+        if ($request->getMethod() == 'POST') {
            $post = new Post();
-           $img=$post->setImg($request->get('img'));
-           $file = new File($img);
            $post->setText($request->get('text'));
-           $post->setUserId(1);
-           $post->$file->setImg($request->get('img'));
-           $fileName = $this->get('app.article_uploader')->upload($file);
+           $post->setUserId($this->get('session')->get('userId'));
+           $fileName = $this->get('app.article_uploader')->upload($request->files->get('img'));
 
            $post->setImg($fileName);
 
            $em = $this->getDoctrine()->getManager();
            $em->persist($post);
            $em->flush();
-           return $this->redirectToRoute('post_index');
+
+           $this->addFlash('success', 'L\'article a bien été ajouté !');
+          return $this->redirectToRoute('post_index');
 
         }
         return $this->render('post/new.html.twig');
@@ -68,6 +70,9 @@ class PostController extends Controller
      */
     public function editAction(Request $request, Post $post)
     {
+      if($this->get('session')->get('userPermission') != 2)
+      return $this->redirectToRoute('post_index');
+
         if ($request->getMethod() == 'POST') {
 
             $em = $this->getDoctrine()->getManager();
@@ -98,6 +103,9 @@ class PostController extends Controller
      */
     public function deleteAction(Request $request, $id)
     {
+      if($this->get('session')->get('userPermission') != 2)
+      return $this->redirectToRoute('post_index');
+
         $em = $this->getDoctrine()->getManager();
         $post = $em->getRepository('AppBundle:Post')->find($id);
 

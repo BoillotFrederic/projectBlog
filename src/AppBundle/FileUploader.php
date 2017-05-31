@@ -4,11 +4,11 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class FileUploader
 {
-    private $targetDir='%kernel.root_dir%/ ../web/uploads/articles';
+    private $targetDir;
 
     public function __construct($targetDir)
     {
-        $this->targetDir = $targetDir;
+        $this->targetDir = '../web/uploads/articles';
     }
 
     public function upload(UploadedFile $file)

@@ -26,9 +26,15 @@
               <a href="{{ path('post_index') }}">
                 Accueil
               </a>
+              {% if app.session.get('userPermission') == 2 %}
               |
               <a href="{{ path('user_index') }}">
                 Utilisateurs
+              </a>
+              {% endif %}
+              |
+              <a href="{{ path('user_edit', { 'id': app.session.get('userId') }) }}">
+                {{ app.session.get('userName') }}
               </a>
               |
               <a href="{{ path('user_disconnect') }}">
@@ -37,6 +43,10 @@
             </li>
             {% else %}
             <li>
+              <a href="{{ path('user_new') }}">
+                Créer un compte
+              </a>
+              |
               <a id="connect" href="#">
                 Connexion
               </a>

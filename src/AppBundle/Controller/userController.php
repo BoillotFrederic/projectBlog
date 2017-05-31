@@ -47,6 +47,7 @@ class userController extends Controller
             $user->setEmail($request->get('email'));
             $user->setPassword($request->get('password'));
             $user->setAvatar('');
+            $user->setPermission(1);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
@@ -74,6 +75,10 @@ class userController extends Controller
 
         if(isset($user[0]) && $user[0]->getPassword() == md5($request->get('password'))){
           $this->get('session')->set('connected', true);
+          $this->get('session')->set('userId', $user[0]->getId());
+          $this->get('session')->set('userName', $user[0]->getName());
+          $this->get('session')->set('userPermission', $user[0]->getPermission());
+
           $this->addFlash('success', 'Bonjour ' . $user[0]->getName() . ', Vous êtes connecté !');
           return $this->redirectToRoute('post_index');
         }
@@ -93,6 +98,7 @@ class userController extends Controller
     public function disconnect()
     {
       $this->get('session')->set('connected', false);
+      $this->get('session')->set('userPermission', 0);
       $this->addFlash('success', 'Vous avez été deconnecté !');
       return $this->redirectToRoute('post_index');
     }
@@ -105,6 +111,9 @@ class userController extends Controller
      */
     public function showAction(user $user)
     {
+      if(!$this->get('session')->get('connected'))
+      return $this->redirectToRoute('user_index');
+
         $deleteForm = $this->createDeleteForm($user);
 
         return $this->render('user/show.html.twig', array(
@@ -121,25 +130,41 @@ class userController extends Controller
      */
     public function editAction(Request $request, user $user)
     {
+      if(!$this->get('session')->get('connected'))
+      return $this->redirectToRoute('user_index');
+
+      $em = $this->getDoctrine()->getManager();
+      $user = $em->getRepository('AppBundle:user')->find($user->getId());
+
+      if($user->getId() != $this->get('session')->get('userId') &&
+         $this->get('session')->get('userPermission') == 1)
+      return $this->redirectToRoute('post_index');
+
         $deleteForm = $this->createDeleteForm($user);
 
         if ($request->getMethod() == 'POST') {
             if($request->get('password') == $request->get('repassword')){
-              $em = $this->getDoctrine()->getManager();
-              $user = $em->getRepository('AppBundle:user')->find($user->getId());
 
               if (!$user)
               throw $this->createNotFoundException('Pas de utilisateur pour l\'id ' . $user->getId());
-              ;
-              $user->setName($request->get('pseudo'));
+
               $user->setEmail($request->get('email'));
-              $user->setPassword($request->get('password'));
               $user->setAvatar('');
+
+              if($this->get('session')->get('userPermission') == 2)
+              $user->setName($request->get('pseudo'));
+
+              if($request->get('password'))
+              $user->setPassword($request->get('password'));
 
               $em->flush();
 
               $this->addFlash('success', 'L\'utilisateur a bien été mise à jour !');
+
+              if($this->get('session')->get('userPermission') == 2)
               return $this->redirectToRoute('user_index');
+              else
+              return $this->redirectToRoute('post_index');
             }
         }
 
@@ -157,6 +182,9 @@ class userController extends Controller
      */
     public function deleteAction(Request $request, user $user)
     {
+      if(!$this->get('session')->get('userPermission') != 2)
+      return $this->redirectToRoute('post_index');
+
         $form = $this->createDeleteForm($user);
         $form->handleRequest($request);
 

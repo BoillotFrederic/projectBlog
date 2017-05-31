@@ -39,6 +39,7 @@ h1{
   background-color:rgba(0, 0, 0, 0.2);
   border-bottom:3px solid rgba(0, 0, 0, 0.3);
   width:100%;
+  z-index:1;
 }
 #navBar ul{
   text-align:right;
@@ -97,6 +98,7 @@ h1{
   padding:50px;
   color:white;
   text-align:center;
+  z-index:2;
 }
 #success
 {
@@ -138,6 +140,13 @@ h1{
   padding:2px 7px 2px 7px;
   border:1px solid darkgrey;
   border-radius:7px;
+}
+.posts img{
+  width:80%;
+  margin:20px;
+}
+.posts p{
+  margin:10px 10px 40px 10px;
 }
 .time{
   margin:20px auto 0 auto;

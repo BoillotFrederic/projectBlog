@@ -4,10 +4,12 @@
     <h1>Editer un utiliser</h1>
 
     <form id="formUsers" method="post">
+      {% if app.session.get('userPermission') == 2 %}
       <div>
         <label for="pseudo">Pseudo</label>
         <input type="text" id="pseudo" name="pseudo" value="{{ user.name }}">
       </div>
+      {% endif %}
       <div>
         <label for="email">Email</label>
         <input type="text" id="email" name="email" value="{{ user.email }}">
@@ -24,7 +26,7 @@
         <input type="submit" value="Editer">
       </div>
     </form>
-
+    {% if app.session.get('userPermission') == 2 %}
     <ul>
         <li>
             <a href="{{ path('user_index') }}">Retour à la liste d'utilisateur</a>
@@ -35,4 +37,5 @@
             {{ form_end(delete_form) }}
         </li>
     </ul>
+    {% endif %}
 {% endblock %}

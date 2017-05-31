@@ -5,8 +5,12 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\user;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+<<<<<<< HEAD
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+=======
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+>>>>>>> fa49e10cd4bc8fb69bfe598cba12d83e41006e0a
 
 /**
  * User controller.
@@ -52,7 +56,10 @@ class userController extends Controller
             $em->persist($user);
             $em->flush();
 
+<<<<<<< HEAD
             $this->addFlash('success', 'L\'utilisateur a bien été créé !');
+=======
+>>>>>>> fa49e10cd4bc8fb69bfe598cba12d83e41006e0a
             return $this->redirectToRoute('post_index');
           }
         }
@@ -61,6 +68,7 @@ class userController extends Controller
     }
 
     /**
+<<<<<<< HEAD
      * Connexion
      *
      * @Route("/connect", name="user_connect")
@@ -98,6 +106,8 @@ class userController extends Controller
     }
 
     /**
+=======
+>>>>>>> fa49e10cd4bc8fb69bfe598cba12d83e41006e0a
      * Finds and displays a user entity.
      *
      * @Route("/{id}", name="user_show")
@@ -138,7 +148,10 @@ class userController extends Controller
 
               $em->flush();
 
+<<<<<<< HEAD
               $this->addFlash('success', 'L\'utilisateur a bien été mise à jour !');
+=======
+>>>>>>> fa49e10cd4bc8fb69bfe598cba12d83e41006e0a
               return $this->redirectToRoute('user_index');
             }
         }
@@ -164,8 +177,11 @@ class userController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($user);
             $em->flush();
+<<<<<<< HEAD
 
             $this->addFlash('success', 'L\'utilisateur a bien été supprimé !');
+=======
+>>>>>>> fa49e10cd4bc8fb69bfe598cba12d83e41006e0a
         }
 
         return $this->redirectToRoute('user_index');

@@ -3,7 +3,11 @@
 {% block body %}
     <h1>Editer un utiliser</h1>
 
+<<<<<<< HEAD
     <form id="formUsers" method="post">
+=======
+    <form method="post">
+>>>>>>> fa49e10cd4bc8fb69bfe598cba12d83e41006e0a
       <div>
         <label for="pseudo">Pseudo</label>
         <input type="text" id="pseudo" name="pseudo" value="{{ user.name }}">
@@ -14,6 +18,7 @@
       </div>
       <div>
         <label for="password">Mot de passe</label>
+<<<<<<< HEAD
         <input type="password" id="password" name="password" value="">
       </div>
       <div>
@@ -22,6 +27,16 @@
       </div>
       <div>
         <input type="submit" value="Editer">
+=======
+        <input type="text" id="password" name="password" value="">
+      </div>
+      <div>
+        <label for="repassword">Retaper votre mot de passe</label>
+        <input type="text" id="repassword" name="repassword" value="">
+      </div>
+      <div>
+        <input type="submit" value="Envoyer">
+>>>>>>> fa49e10cd4bc8fb69bfe598cba12d83e41006e0a
       </div>
     </form>
 

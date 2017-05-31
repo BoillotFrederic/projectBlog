@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Post
@@ -26,6 +28,10 @@ class Post
         $this->modified = new \DateTime();
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> fa49e10cd4bc8fb69bfe598cba12d83e41006e0a
     /**
      * @var int
      *
@@ -46,6 +52,7 @@ class Post
      * @var string
      *
      * @ORM\Column(name="img", type="string", length=255)
+     *
      */
     private $img;
 

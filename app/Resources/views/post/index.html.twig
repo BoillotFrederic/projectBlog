@@ -3,6 +3,7 @@
 {% block body %}
   <h1>Project Blog</h1>
 
+<<<<<<< HEAD
   {% if app.session.get('connected') %}
   <a id="btnAdd" href="{{ path('post_new') }}">Créer un nouveau post</a>
   {% endif %}
@@ -12,21 +13,43 @@
     <span>Modifié le : {{ post.modified|date('Y-m-d H:i:s') }}</span>
     <span>Créé le : {{ post.created|date('Y-m-d H:i:s') }}</span>
   </div>
+=======
+  <a href="{{ path('post_new') }}">Créer un nouvel article</a>
+
+  {% for post in posts %}
+>>>>>>> fa49e10cd4bc8fb69bfe598cba12d83e41006e0a
   <div class="posts">
     <img src="{{ post.img }}" alt="" />
     <p>
       {{ post.text }}
     </p>
+<<<<<<< HEAD
     {% if app.session.get('connected') %}
     <ul>
       <li>
         <a href="{{ path('post_delete', { 'id': post.id }) }}">Supprimer</a>
+=======
+    <span>Modifié le : {{ post.modified|date('Y-m-d H:i:s') }}</span>
+    <span>Créé le : {{ post.created|date('Y-m-d H:i:s') }}</span>
+    <span><a href="{{ asset(post.img) }}">Voir l'article</a><span>
+    <ul>
+
+      <li>
+        <form name="form" method="post" action="/post/{{ post.id }}">
+          <input type="hidden" name="_method" value="DELETE" />
+          <input type="submit" value="Supprimer">
+          <input type="hidden" id="form__token" name="form[_token]" value="HeubiGfVccFj51yvZSIvczCZvYxGtBOAbNp-11ZUMG0" />
+        </form>
+>>>>>>> fa49e10cd4bc8fb69bfe598cba12d83e41006e0a
       </li>
       <li>
         <a href="{{ path('post_edit', { 'id': post.id }) }}">Editer</a>
       </li>
     </ul>
+<<<<<<< HEAD
     {% endif %}
+=======
+>>>>>>> fa49e10cd4bc8fb69bfe598cba12d83e41006e0a
   </div>
   {% endfor %}
 {% endblock %}

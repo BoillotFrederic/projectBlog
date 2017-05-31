@@ -6,7 +6,8 @@ use AppBundle\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
-
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 /**
  * Post controller.
  *
@@ -23,7 +24,12 @@ class PostController extends Controller
     public function indexAction()
     {
        $em = $this->getDoctrine()->getManager();
+<<<<<<< HEAD
        $posts = $em->getRepository('AppBundle:Post')->findBy(array(), array('created'=>'desc'));
+=======
+
+        $posts = $em->getRepository('AppBundle:Post')->findBy(array(), array('created'=>'desc'));
+>>>>>>> fa49e10cd4bc8fb69bfe598cba12d83e41006e0a
 
        return $this->render('post/index.html.twig', array(
             'posts' => $posts,
@@ -41,13 +47,18 @@ class PostController extends Controller
         if ($request->getMethod() == 'POST') {
 
            $post = new Post();
+           $img=$post->setImg($request->get('img'));
+           $file = new File($img);
            $post->setText($request->get('text'));
            $post->setUserId(1);
+           $post->$file->setImg($request->get('img'));
+           $fileName = $this->get('app.article_uploader')->upload($file);
 
+           $post->setImg($fileName);
+     
            $em = $this->getDoctrine()->getManager();
            $em->persist($post);
            $em->flush();
-
            return $this->redirectToRoute('post_index');
 
         }
@@ -69,6 +80,7 @@ class PostController extends Controller
 
             if (!$post)
             throw $this->createNotFoundException('Pas de post pour l\'id ' . $post->getId());
+<<<<<<< HEAD
 
             $post->setText($request->get('text'));
             $post->fieldModified();
@@ -76,6 +88,14 @@ class PostController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'L\'article a bien été modifié !');
+=======
+
+            $post->setText($request->get('text'));
+            $post->fieldModified();
+
+            $em->flush();
+
+>>>>>>> fa49e10cd4bc8fb69bfe598cba12d83e41006e0a
             return $this->redirectToRoute('post_index');
         }
 

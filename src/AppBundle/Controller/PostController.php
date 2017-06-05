@@ -24,8 +24,12 @@ class PostController extends Controller
     public function indexAction()
     {
        $em = $this->getDoctrine()->getManager();
+<<<<<<< HEAD
 
         $posts = $em->getRepository('AppBundle:Post')->findBy(array(), array('created'=>'desc'));
+=======
+       $posts = $em->getRepository('AppBundle:Post')->findBy(array(), array('created'=>'desc'));
+>>>>>>> 051ce017a95e1b176f9ee1b76d9d290dff4c8fad
 
        return $this->render('post/index.html.twig', array(
             'posts' => $posts,
@@ -76,12 +80,22 @@ class PostController extends Controller
 
             if (!$post)
             throw $this->createNotFoundException('Pas de post pour l\'id ' . $post->getId());
+<<<<<<< HEAD
 
             $post->setText($request->get('text'));
             $post->fieldModified();
 
             $em->flush();
 
+=======
+
+            $post->setText($request->get('text'));
+            $post->fieldModified();
+
+            $em->flush();
+
+            $this->addFlash('success', 'L\'article a bien été modifié !');
+>>>>>>> 051ce017a95e1b176f9ee1b76d9d290dff4c8fad
             return $this->redirectToRoute('post_index');
         }
 
@@ -91,22 +105,23 @@ class PostController extends Controller
     }
 
     /**
-     * Deletes a post entity.
+     * Deletes a get entity.
      *
      * @Route("/{id}", name="post_delete")
-     * @Method("DELETE")
+     * @Method("GET")
      */
-    public function deleteAction(Request $request, Post $post)
+    public function deleteAction(Request $request, $id)
     {
-        $form = $this->createDeleteForm($post);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $post = $em->getRepository('AppBundle:Post')->find($id);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($post);
-            $em->flush();
-        }
+        if (!$post)
+        throw $this->createNotFoundException('Pas de produit pour l\'id ' . $id);
 
+        $em->remove($post);
+        $em->flush();
+
+        $this->addFlash('success', 'L\'article a bien été supprimé !');
         return $this->redirectToRoute('post_index');
     }
 

@@ -5,7 +5,12 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\user;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+<<<<<<< HEAD
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+=======
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+>>>>>>> 051ce017a95e1b176f9ee1b76d9d290dff4c8fad
 
 /**
  * User controller.
@@ -51,6 +56,10 @@ class userController extends Controller
             $em->persist($user);
             $em->flush();
 
+<<<<<<< HEAD
+=======
+            $this->addFlash('success', 'L\'utilisateur a bien été créé !');
+>>>>>>> 051ce017a95e1b176f9ee1b76d9d290dff4c8fad
             return $this->redirectToRoute('post_index');
           }
         }
@@ -59,6 +68,46 @@ class userController extends Controller
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Connexion
+     *
+     * @Route("/connect", name="user_connect")
+     * @Method("POST")
+     */
+    public function connect(Request $request)
+    {
+      if ($request->getMethod() == 'POST') {
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('AppBundle:user')->findBy(array('name' => $request->get('pseudo')));
+
+        if(isset($user[0]) && $user[0]->getPassword() == md5($request->get('password'))){
+          $this->get('session')->set('connected', true);
+          $this->addFlash('success', 'Bonjour ' . $user[0]->getName() . ', Vous êtes connecté !');
+          return $this->redirectToRoute('post_index');
+        }
+        else{
+          $this->addFlash('error', 'La connexion a échoué !');
+          return $this->redirectToRoute('post_index');
+        }
+      }
+    }
+
+    /**
+     * Disconnect
+     *
+     * @Route("/disconnect", name="user_disconnect")
+     * @Method("GET")
+     */
+    public function disconnect()
+    {
+      $this->get('session')->set('connected', false);
+      $this->addFlash('success', 'Vous avez été deconnecté !');
+      return $this->redirectToRoute('post_index');
+    }
+
+    /**
+>>>>>>> 051ce017a95e1b176f9ee1b76d9d290dff4c8fad
      * Finds and displays a user entity.
      *
      * @Route("/{id}", name="user_show")
@@ -99,6 +148,10 @@ class userController extends Controller
 
               $em->flush();
 
+<<<<<<< HEAD
+=======
+              $this->addFlash('success', 'L\'utilisateur a bien été mise à jour !');
+>>>>>>> 051ce017a95e1b176f9ee1b76d9d290dff4c8fad
               return $this->redirectToRoute('user_index');
             }
         }
@@ -124,6 +177,11 @@ class userController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($user);
             $em->flush();
+<<<<<<< HEAD
+=======
+
+            $this->addFlash('success', 'L\'utilisateur a bien été supprimé !');
+>>>>>>> 051ce017a95e1b176f9ee1b76d9d290dff4c8fad
         }
 
         return $this->redirectToRoute('user_index');

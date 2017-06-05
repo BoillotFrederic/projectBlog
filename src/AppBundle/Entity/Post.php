@@ -28,7 +28,10 @@ class Post
         $this->modified = new \DateTime();
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 051ce017a95e1b176f9ee1b76d9d290dff4c8fad
     /**
      * @var int
      *

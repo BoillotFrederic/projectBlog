@@ -5,7 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 /**
@@ -24,12 +25,8 @@ class PostController extends Controller
     public function indexAction()
     {
        $em = $this->getDoctrine()->getManager();
-<<<<<<< HEAD
 
-        $posts = $em->getRepository('AppBundle:Post')->findBy(array(), array('created'=>'desc'));
-=======
-       $posts = $em->getRepository('AppBundle:Post')->findBy(array(), array('created'=>'desc'));
->>>>>>> 051ce017a95e1b176f9ee1b76d9d290dff4c8fad
+      $posts = $em->getRepository('AppBundle:Post')->findBy(array(), array('created'=>'desc'));
 
        return $this->render('post/index.html.twig', array(
             'posts' => $posts,
@@ -44,22 +41,24 @@ class PostController extends Controller
      */
     public function newAction(Request $request)
     {
-        if ($request->getMethod() == 'POST') {
+      if($this->get('session')->get('userPermission') != 2)
+      return $this->redirectToRoute('post_index');
 
+        if ($request->getMethod() == 'POST') {
            $post = new Post();
-           $img=$post->setImg($request->get('img'));
-           $file = new File($img);
            $post->setText($request->get('text'));
-           $post->setUserId(1);
-           $post->$file->setImg($request->get('img'));
-           $fileName = $this->get('app.article_uploader')->upload($file);
+           $post->setUserId($this->get('session')->get('userId'));
+           $post->setDraftCopy(1);
+           $fileName = $this->get('app.article_uploader')->upload($request->files->get('img'));
 
            $post->setImg($fileName);
-     
+
            $em = $this->getDoctrine()->getManager();
            $em->persist($post);
            $em->flush();
-           return $this->redirectToRoute('post_index');
+
+           $this->addFlash('success', 'L\'article a bien été ajouté !');
+          return $this->redirectToRoute('post_index');
 
         }
         return $this->render('post/new.html.twig');
@@ -73,6 +72,9 @@ class PostController extends Controller
      */
     public function editAction(Request $request, Post $post)
     {
+      if($this->get('session')->get('userPermission') != 2)
+      return $this->redirectToRoute('post_index');
+
         if ($request->getMethod() == 'POST') {
 
             $em = $this->getDoctrine()->getManager();
@@ -80,14 +82,19 @@ class PostController extends Controller
 
             if (!$post)
             throw $this->createNotFoundException('Pas de post pour l\'id ' . $post->getId());
-<<<<<<< HEAD
 
             $post->setText($request->get('text'));
+
+            $fileName = $this->get('app.article_uploader')->upload($request->files->get('img'));
+            if($fileName){
+              @unlink('../web/uploads/'. $post->getImg());
+              $post->setImg($fileName);
+            }
+
             $post->fieldModified();
 
             $em->flush();
 
-=======
 
             $post->setText($request->get('text'));
             $post->fieldModified();
@@ -95,7 +102,7 @@ class PostController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'L\'article a bien été modifié !');
->>>>>>> 051ce017a95e1b176f9ee1b76d9d290dff4c8fad
+
             return $this->redirectToRoute('post_index');
         }
 
@@ -107,7 +114,8 @@ class PostController extends Controller
     /**
      * Deletes a get entity.
      *
-     * @Route("/{id}", name="post_delete")
+     *
+     * @Route("/{id}/delete", name="post_delete")
      * @Method("GET")
      */
     public function deleteAction(Request $request, $id)
@@ -115,6 +123,12 @@ class PostController extends Controller
         $em = $this->getDoctrine()->getManager();
         $post = $em->getRepository('AppBundle:Post')->find($id);
 
+      if($this->get('session')->get('userPermission') != 2)
+      return $this->redirectToRoute('post_index');
+
+        $em = $this->getDoctrine()->getManager();
+        $post = $em->getRepository('AppBundle:Post')->find($id);
+        
         if (!$post)
         throw $this->createNotFoundException('Pas de produit pour l\'id ' . $id);
 
@@ -123,6 +137,54 @@ class PostController extends Controller
 
         $this->addFlash('success', 'L\'article a bien été supprimé !');
         return $this->redirectToRoute('post_index');
+    }
+
+    /**
+     * Publish.
+     *
+     * @Route("/{id}/publish", name="post_publish")
+     * @Method("GET")
+     */
+    public function publishAction(Request $request, $id)
+    {
+      if($this->get('session')->get('userPermission') != 2)
+      return $this->redirectToRoute('post_index');
+
+      $em = $this->getDoctrine()->getManager();
+      $post = $em->getRepository('AppBundle:Post')->find($id);
+
+      if (!$post)
+      throw $this->createNotFoundException('Pas de post pour l\'id ' . $id);
+
+      $post->setDraftCopy(0);
+      $em->flush();
+
+      $this->addFlash('success', 'L\'article a bien été publié !');
+      return $this->redirectToRoute('post_index');
+    }
+
+    /**
+     * hide.
+     *
+     * @Route("/{id}/hide", name="post_hide")
+     * @Method("GET")
+     */
+    public function hideAction(Request $request, $id)
+    {
+      if($this->get('session')->get('userPermission') != 2)
+      return $this->redirectToRoute('post_index');
+
+      $em = $this->getDoctrine()->getManager();
+      $post = $em->getRepository('AppBundle:Post')->find($id);
+
+      if (!$post)
+      throw $this->createNotFoundException('Pas de post pour l\'id ' . $id);
+
+      $post->setDraftCopy(1);
+      $em->flush();
+
+      $this->addFlash('success', 'L\'article a bien été masqué !');
+      return $this->redirectToRoute('post_index');
     }
 
     /**

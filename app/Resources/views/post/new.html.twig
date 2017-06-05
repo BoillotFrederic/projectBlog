@@ -3,11 +3,15 @@
 {% block body %}
     <h1>Créer un Nouvel article</h1>
 
-    <form method="post" enctype="multipart/form-data">
-        </label for="text">Description</label>
-        <input id="text" name="text" type="text" />
-        </label for="img">Image</label>
+    <form id="formPost" method="post" enctype="multipart/form-data">
+      <div>
+      </label for="img">Photo</label>
         <input id="img" name="img" type="file" />
+      </div>
+      <div>
+        <label for="text" class="required">Texte</label>
+        <textarea id="text" name="text" required="required"></textarea>
+      </div>
         <button id="valider" name="valider" type="submit" />Valider</button>
     </form>
 

@@ -3,11 +3,10 @@
 {% block body %}
   <h1>Project Blog</h1>
 
-<<<<<<< HEAD
   <a href="{{ path('post_new') }}">Créer un nouvel article</a>
 
   {% for post in posts %}
-=======
+
   {% if app.session.get('connected') %}
   <a id="btnAdd" href="{{ path('post_new') }}">Créer un nouveau post</a>
   {% endif %}
@@ -17,39 +16,61 @@
     <span>Modifié le : {{ post.modified|date('Y-m-d H:i:s') }}</span>
     <span>Créé le : {{ post.created|date('Y-m-d H:i:s') }}</span>
   </div>
->>>>>>> 051ce017a95e1b176f9ee1b76d9d290dff4c8fad
+
   <div class="posts">
     <img src="{{ post.img }}" alt="" />
     <p>
       {{ post.text }}
     </p>
-<<<<<<< HEAD
     <span>Modifié le : {{ post.modified|date('Y-m-d H:i:s') }}</span>
     <span>Créé le : {{ post.created|date('Y-m-d H:i:s') }}</span>
     <span><a href="{{ asset(post.img) }}">Voir l'article</a><span>
-    <ul>
+  {% if app.session.get('userPermission') == 2 %}
+  <a id="btnAdd" href="{{ path('post_new') }}">Créer un nouveau post</a>
+  {% endif %}
 
+  {% for post in posts %}
+  {% if app.session.get('userPermission') == 2 or post.draftCopy != 1 %}
+  <div class="time">
+    {% if post.modified != post.created %}
+    <span class="spanRight">Modifié le {{ post.modified|date('d/m/Y H:i') }}</span>
+    <span class="spanLeft">Créé le {{ post.created|date('d/m/Y H:i') }}</span>
+    {% else %}
+    <span class="spanLeft">Créé le {{ post.created|date('d/m/Y H:i') }}</span>
+    {% endif %}
+  </div>
+  <div class="posts{% if post.draftCopy == 1 %} draftCopy{% endif %}">
+    <img src="/uploads//{{ post.img }}" alt="" />
+    <p>
+      {{ post.text }}
+    </p>
+    {% if app.session.get('userPermission') == 2 %}
+    <ul>
       <li>
         <form name="form" method="post" action="/post/{{ post.id }}">
           <input type="hidden" name="_method" value="DELETE" />
           <input type="submit" value="Supprimer">
           <input type="hidden" id="form__token" name="form[_token]" value="HeubiGfVccFj51yvZSIvczCZvYxGtBOAbNp-11ZUMG0" />
         </form>
-=======
     {% if app.session.get('connected') %}
     <ul>
       <li>
         <a href="{{ path('post_delete', { 'id': post.id }) }}">Supprimer</a>
->>>>>>> 051ce017a95e1b176f9ee1b76d9d290dff4c8fad
+      </li>
+      <li>
+        {% if post.draftCopy == 1 %}
+        <a href="{{ path('post_publish', { 'id': post.id }) }}">Publier</a>
+        {% else %}
+        <a href="{{ path('post_hide', { 'id': post.id }) }}">Masquer</a>
+        {% endif %}
       </li>
       <li>
         <a href="{{ path('post_edit', { 'id': post.id }) }}">Editer</a>
       </li>
     </ul>
-<<<<<<< HEAD
-=======
     {% endif %}
->>>>>>> 051ce017a95e1b176f9ee1b76d9d290dff4c8fad
+    {% endif %}
   </div>
+  {% endif %}
   {% endfor %}
 {% endblock %}

@@ -39,6 +39,10 @@ h1{
   background-color:rgba(0, 0, 0, 0.2);
   border-bottom:3px solid rgba(0, 0, 0, 0.3);
   width:100%;
+<<<<<<< HEAD
+=======
+  z-index:1;
+>>>>>>> f9ae39f506f10601fa4803ee486f9ce805e2c0c3
 }
 #navBar ul{
   text-align:right;
@@ -56,6 +60,23 @@ h1{
 #navBar a:hover{
   color:yellow;
 }
+<<<<<<< HEAD
+=======
+#navBar #userLoad{
+  position:relative;
+}
+#navBar #userLoad img{
+  position:absolute;
+  left:calc(50% - 50px);
+  top:30px;
+  height:100px;
+  width:100px;
+  display:none;
+}
+#navBar #userLoad:hover img{
+  display:block;
+}
+>>>>>>> f9ae39f506f10601fa4803ee486f9ce805e2c0c3
 
 /*Connexion*/
 #connectBox{
@@ -97,6 +118,10 @@ h1{
   padding:50px;
   color:white;
   text-align:center;
+<<<<<<< HEAD
+=======
+  z-index:2;
+>>>>>>> f9ae39f506f10601fa4803ee486f9ce805e2c0c3
 }
 #success
 {
@@ -139,6 +164,16 @@ h1{
   border:1px solid darkgrey;
   border-radius:7px;
 }
+<<<<<<< HEAD
+=======
+.posts img{
+  width:80%;
+  margin:20px;
+}
+.posts p{
+  margin:10px 10px 40px 10px;
+}
+>>>>>>> f9ae39f506f10601fa4803ee486f9ce805e2c0c3
 .time{
   margin:20px auto 0 auto;
   width:70%;
@@ -148,9 +183,26 @@ h1{
   border-left:3px solid rgba(0, 0, 0, 0.1);
   line-height:30px;
   text-align:left;
+<<<<<<< HEAD
 }
 .time span{
   padding-left:10px;
+=======
+  height:30px;
+}
+.time span{
+  padding-left:10px;
+  padding-right:10px;
+}
+.time .spanLeft{
+  float:left;
+}
+.time .spanRight{
+  float:right;
+}
+.draftCopy{
+  background-color:rgba(0, 0, 0, 0.5);
+>>>>>>> f9ae39f506f10601fa4803ee486f9ce805e2c0c3
 }
 
 /*Button*/

@@ -1,19 +1,16 @@
-<<<<<<< HEAD
-=======
-{% if app.session.get('connected') %}
->>>>>>> 051ce017a95e1b176f9ee1b76d9d290dff4c8fad
+
 {% extends 'base.html.twig' %}
 
 {% block body %}
+{% if app.session.get('userPermission') == 2 %}
     <h1>Liste des utilisateurs</h1>
 
-<<<<<<< HEAD
+
     <table>
-=======
     <a id="btnAdd" href="{{ path('user_new') }}">Créer un nouvel utilisateur</a>
 
     <table id="users">
->>>>>>> 051ce017a95e1b176f9ee1b76d9d290dff4c8fad
+
         <thead>
             <tr>
                 <th>Name</th>
@@ -37,15 +34,12 @@
         {% endfor %}
         </tbody>
     </table>
-<<<<<<< HEAD
 
     <ul>
         <li>
             <a href="{{ path('user_new') }}">Créer un nouvel utilisateur</a>
         </li>
     </ul>
-{% endblock %}
-=======
-{% endblock %}
 {% endif %}
->>>>>>> 051ce017a95e1b176f9ee1b76d9d290dff4c8fad
+{% endblock %}
+

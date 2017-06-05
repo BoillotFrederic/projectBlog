@@ -1,33 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Editer un utiliser</h1>
+    <h1>Editer un utilisateur</h1>
 
-<<<<<<< HEAD
-    <form method="post">
-=======
-    <form id="formUsers" method="post">
->>>>>>> 051ce017a95e1b176f9ee1b76d9d290dff4c8fad
+    <form id="formUsers" method="post" enctype="multipart/form-data">
+      {% if app.session.get('userPermission') == 2 %}
       <div>
         <label for="pseudo">Pseudo</label>
         <input type="text" id="pseudo" name="pseudo" value="{{ user.name }}">
       </div>
+      {% endif %}
       <div>
         <label for="email">Email</label>
         <input type="text" id="email" name="email" value="{{ user.email }}">
       </div>
       <div>
         <label for="password">Mot de passe</label>
-<<<<<<< HEAD
-        <input type="text" id="password" name="password" value="">
-      </div>
-      <div>
-        <label for="repassword">Retaper votre mot de passe</label>
-        <input type="text" id="repassword" name="repassword" value="">
-      </div>
-      <div>
         <input type="submit" value="Envoyer">
-=======
+
         <input type="password" id="password" name="password" value="">
       </div>
       <div>
@@ -35,11 +25,14 @@
         <input type="password" id="repassword" name="repassword" value="">
       </div>
       <div>
+        <label for="avatar" class="required">Avatar</label>
+        <input type="file" id="avatar" name="avatar" />
+      </div>
+      <div>
         <input type="submit" value="Editer">
->>>>>>> 051ce017a95e1b176f9ee1b76d9d290dff4c8fad
       </div>
     </form>
-
+    {% if app.session.get('userPermission') == 2 %}
     <ul>
         <li>
             <a href="{{ path('user_index') }}">Retour à la liste d'utilisateur</a>
@@ -50,4 +43,5 @@
             {{ form_end(delete_form) }}
         </li>
     </ul>
+    {% endif %}
 {% endblock %}

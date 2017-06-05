@@ -1,8 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Editer l'article</h1>
-
+<body class="create">
+<div class="col l12 s12 m12">
+    <h1>Editer un post</h1>
 
     <form id="formPost" name="post" method="post" enctype="multipart/form-data">
       <div>
@@ -13,12 +14,8 @@
         <label for="text" class="required">Texte</label>
         <textarea id="text" name="text" required="required">{{ post.text }}</textarea>
       </div>
-      <input type="submit" value="Edit" />
+      <input type="submit" value="Editer" />
     </form>
-
-    <ul>
-      <li>
-        <a href="{{ path('post_index') }}">Retour sur le blog</a>
-      </li>
-    </ul>
+    </div>
+    </body>
 {% endblock %}

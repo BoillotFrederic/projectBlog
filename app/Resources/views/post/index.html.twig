@@ -1,37 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-  <h1>Project Blog</h1>
-
-  <a href="{{ path('post_new') }}">Créer un nouvel article</a>
-
-  {% for post in posts %}
-
-  {% if app.session.get('connected') %}
-  <a id="btnAdd" href="{{ path('post_new') }}">Créer un nouveau post</a>
-  {% endif %}
-
-  {% for post in posts %}
-  <div class="time">
-    <span>Modifié le : {{ post.modified|date('Y-m-d H:i:s') }}</span>
-    <span>Créé le : {{ post.created|date('Y-m-d H:i:s') }}</span>
-  </div>
-
-  <div class="posts">
-    <img src="{{ post.img }}" alt="" />
-    <p>
-      {{ post.text }}
-    </p>
-    <span>Modifié le : {{ post.modified|date('Y-m-d H:i:s') }}</span>
-    <span>Créé le : {{ post.created|date('Y-m-d H:i:s') }}</span>
-    <span><a href="{{ asset(post.img) }}">Voir l'article</a><span>
+<div  class="col l12 s12 m12">
+		 <div class="parallax-container">
+      <div class="parallax"><img src="{{ asset('parallax.jpg')}}"></div>
+			<div class="col l12 s12 m12"><h1 class="tobot">Project Blog</h1></div>
+    </div>
   {% if app.session.get('userPermission') == 2 %}
-  <a id="btnAdd" href="{{ path('post_new') }}">Créer un nouveau post</a>
+  <a id="btnAdd" href="{{ path('post_new') }}">Créer un nouvel article</a>
   {% endif %}
 
   {% for post in posts %}
   {% if app.session.get('userPermission') == 2 or post.draftCopy != 1 %}
-  <div class="time">
+  <div class="col s12 l12 m12 time">
     {% if post.modified != post.created %}
     <span class="spanRight">Modifié le {{ post.modified|date('d/m/Y H:i') }}</span>
     <span class="spanLeft">Créé le {{ post.created|date('d/m/Y H:i') }}</span>
@@ -41,18 +22,10 @@
   </div>
   <div class="posts{% if post.draftCopy == 1 %} draftCopy{% endif %}">
     <img src="/uploads//{{ post.img }}" alt="" />
-    <p>
+    <p class="description">
       {{ post.text }}
     </p>
     {% if app.session.get('userPermission') == 2 %}
-    <ul>
-      <li>
-        <form name="form" method="post" action="/post/{{ post.id }}">
-          <input type="hidden" name="_method" value="DELETE" />
-          <input type="submit" value="Supprimer">
-          <input type="hidden" id="form__token" name="form[_token]" value="HeubiGfVccFj51yvZSIvczCZvYxGtBOAbNp-11ZUMG0" />
-        </form>
-    {% if app.session.get('connected') %}
     <ul>
       <li>
         <a href="{{ path('post_delete', { 'id': post.id }) }}">Supprimer</a>
@@ -67,10 +40,38 @@
       <li>
         <a href="{{ path('post_edit', { 'id': post.id }) }}">Editer</a>
       </li>
+              <li>
+      <button id="valid" type="submit" name="send" data-target="modal1" class="waves-effect waves-light btn" >Commentaire</button>
+      </li>
     </ul>
     {% endif %}
-    {% endif %}
+  </div>
   </div>
   {% endif %}
   {% endfor %}
+  <div class="totop col s1 m1 l1">
+            <a href="#" class="js-scrollTo" ><i class="totop fa fa-arrow-circle-up fa-2x js-scrollTo" aria-hidden="true"></i></a>
+        </div>
+   <div id="modal1" class="modal">
+    <div id="modalcont" class="modal-content">
+    <h4>Commentaire ajouté</h4>  
+    <p class="green-text text-darken-4">Le commentaire a bien été posté !</p>    
+    </div>
+<div class="modal-footer">
+  <a onclick="addFormInit(); return false;" href="" class="modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
+</div>
+</div>
+
+	 <footer class="page-footer">
+          <div class="footer-copyright">
+            <div class="container">
+            <a class="contact">© 2017 François&Frederic</a>
+            <ul class="right">
+            <li><a href="#" target="blank"><i class="fa fa-twitter-square fa-3x"></i></a></li>
+						<li><a  href="#" target="blank"><i class="fa fa-facebook-square fa-3x" aria-hidden="true"></i></a></li>
+            <li><a class="contact text-lighten-5 right link" href="#">Contactez Nous</a></li>
+           </ul>
+            </div>
+          </div>
+        </footer>
 {% endblock %}

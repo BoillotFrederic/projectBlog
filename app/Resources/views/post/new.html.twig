@@ -1,12 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<body class="create">
+<div class="col l12 s12 m12">
     <h1>Créer un Nouvel article</h1>
 
     <form id="formPost" method="post" enctype="multipart/form-data">
       <div>
       </label for="img">Photo</label>
         <input id="img" name="img" type="file" />
+      </div>
+      <div>
+        <label for="titre" class="required">Titre</label>
+        <input id="titre" name="titre" required="required"></textarea>
       </div>
       <div>
         <label for="text" class="required">Texte</label>
@@ -20,4 +26,6 @@
             <a href="{{ path('post_index') }}">Retour à la page d'administration</a>
         </li>
     </ul>
+    </div>
+    </body>
 {% endblock %}

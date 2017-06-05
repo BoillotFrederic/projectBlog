@@ -1,17 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<body class="create">
+<div class="col l12 s12 m12">
     <h1>Créer un compte</h1>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <form method="post">
-=======
     <form id="formUsers" method="post">
->>>>>>> 051ce017a95e1b176f9ee1b76d9d290dff4c8fad
-=======
-    <form id="formUsers" method="post">
->>>>>>> f9ae39f506f10601fa4803ee486f9ce805e2c0c3
+
       <div>
         <label for="pseudo">Pseudo</label>
         <input type="text" id="pseudo" name="pseudo" value="">
@@ -29,13 +24,14 @@
         <input type="password" id="repassword" name="repassword" value="">
       </div>
       <div>
-        <input type="submit" value="Envoyer">
+        <input class="waves-effect waves-light btn" type="submit" value="Envoyer">
       </div>
     </form>
 
-    <ul>
+    <ul class="valid">
         <li>
-            <a href="{{ path('post_index') }}">Retour au blog</a>
+            <a class="waves-effect waves-light btn" href="{{ path('post_index') }}">Retour au blog</a>
         </li>
     </ul>
+    </body>
 {% endblock %}

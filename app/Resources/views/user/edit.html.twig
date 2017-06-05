@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<body class="create">
+<div class="col l12 s12 m12">
     <h1>Editer un utilisateur</h1>
 
     <form id="formUsers" method="post" enctype="multipart/form-data">
@@ -43,5 +45,7 @@
             {{ form_end(delete_form) }}
         </li>
     </ul>
+    </div>
+    </body>
     {% endif %}
 {% endblock %}

@@ -20,7 +20,7 @@
     <span class="spanLeft">Créé le {{ post.created|date('d/m/Y H:i') }}</span>
     {% endif %}
   </div>
-  <div class="col s12 l12 m12 posts{% if post.draftCopy == 1 %} draftCopy{% endif %}">
+  <div class=" posts{% if post.draftCopy == 1 %} draftCopy{% endif %}">
     <img class="card-panel hoverable " src="/uploads//{{ post.img }}" alt="" />
     <p class="description">
       {{ post.text }}
@@ -58,7 +58,7 @@
     <p class="green-text text-darken-4">Le commentaire a bien été posté !</p>    
     </div>
 <div class="modal-footer">
-  <a onclick="addFormInit(); return false;" href="" class="modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
+  <a  class="modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
 </div>
 </div>
 

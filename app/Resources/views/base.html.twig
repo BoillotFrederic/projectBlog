@@ -26,7 +26,7 @@
       {% endfor %}
       <nav id="navBar">
       <div class="nav-wrapper" >
-       <a href="#" data-activates="slide-out" type="button" class="hide-on-med-and-up button-collapse"><i class="material-icons">menu</i></a>
+       <a href="#" data-activates="slide-out" type="button" class="responsive hide-on-med-and-up button-collapse"><i class=" material-icons">menu</i></a>
           <ul class="left"> 
               <li><a class="brand-logo"><img src="{{ asset('logo.jpg')}}" class="logo"/></a></li>  
               </ul>
@@ -47,7 +47,7 @@
                 {{ app.session.get('userName') }}
                 <img src="/uploads/{{ app.session.get('userAvatar') }}" alt="Avatar" />
               </a></li>
-              |
+              
               <li><a href="{{ path('user_disconnect') }}">
                 Deconnexion
               </a>
@@ -63,14 +63,14 @@
                 Connexion
               </a>
             </li>
-{#             <li>
+     
+            {% endif %}
+        <li>
             <a href="{{ path('post_index', { '_locale': 'fr'}) }}"><img src="{{ asset('fr.png')}}"</a>
             </li>
             <li>
             <a href="{{ path('post_index', { '_locale': 'en'}) }}"><img src="{{ asset('en.png')}}"</a>
-            </li>#}
-            {% endif %}
-
+            </li>
           </ul>
           </div>         
         {#</div>#}
@@ -91,17 +91,17 @@
                 Accueil
               </a></li>
               {% if app.session.get('userPermission') == 2 %}
-              |
+              
               <li><a href="{{ path('user_index') }}">
                 Utilisateurs
               </a></li>
               {% endif %}
-              |
+              
               <li><a id="userLoad" href="{{ path('user_edit', { 'id': app.session.get('userId') }) }}">
                 {{ app.session.get('userName') }}
                 <img src="/uploads/{{ app.session.get('userAvatar') }}" alt="Avatar" />
               </a></li>
-              |
+              
               <li><a href="{{ path('user_disconnect') }}">
                 Deconnexion
               </a>
@@ -117,14 +117,14 @@
                 Connexion
               </a>
             </li>
-  {#                                  <li>
+ 
+            {% endif %}
+                                   <li>
             <a href="{{ path('post_index', { '_locale': 'fr'}) }}"><img src="{{ asset('fr.png')}}"</a>
             </li>
             <li>
             <a href="{{ path('post_index', { '_locale': 'en'}) }}"><img src="{{ asset('en.png')}}"</a>
-            </li>#}
-            {% endif %}
-
+            </li>
           </ul>
       <main>
         {% block body %}{% endblock %}
@@ -185,14 +185,6 @@ $(document).ready(function() {
       draggable: true // Choose whether you can drag to open on touch screens
     }
   );
-      
-{#    $( ".posts" ).hover(function() {
-         $( ".description" ).slideDown( 200, function() {
-             $(window).scrollTop($('.description').offset().top);
-    // Animation complete.
-         });
-       
-        });#}
 
 </script>
     </body>

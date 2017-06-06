@@ -13,7 +13,8 @@
         padding-top: 30px;
         background-image: url('../bg2.jpg');
         background-repeat: no-repeat;
-        background-size: 100%;
+        background-size: cover;
+        background-position: center;
         background-attachment: fixed;
         text-align: center;
     }
@@ -88,13 +89,18 @@
         position: absolute;
         left: calc(50% - 50px);
         top: 30px;
-        height: 100px;
-        width: 100px;
+        height: 10%;
+        width: 10%;
         display: none;
     }
     
     #navBar #userLoad:hover img {
         display: block;
+    }
+    
+    .responsive {
+        padding-bottom: 2%;
+        ;
     }
     
     footer {
@@ -103,6 +109,7 @@
     }
     
     footer li {
+        color: orange;
         display: inline-block;
     }
     
@@ -110,7 +117,12 @@
         color: white;
     }
     
+    footer a {
+        color: orange;
+    }
+    
     .totop {
+        color: orange;
         position: fixed;
         right: 0;
         padding-right: 3%;
@@ -193,6 +205,7 @@
         padding: 10 10px 15px 10px;
         margin: 0 auto 20px auto;
         min-height: 60px;
+        padding-bottom: 2%;
     }
     
     .posts ul {
@@ -226,6 +239,11 @@
     
     .posts p {
         margin: 10px 10px 40px 10px;
+    }
+    
+    .newpost {
+        padding-top: 1%;
+        padding-bottom: 1%;
     }
     /*.posts:hover .resp {
     opacity: 0.3;
@@ -283,7 +301,7 @@
     }
     
     .time .spanRight {
-        color: black;
+        color: orange;
         float: right;
     }
     
@@ -310,7 +328,7 @@
     
     #btnAdd:hover {
         box-shadow: 0 0 2em black;
-        background-color: lightblue;
+        background-color: rgba(173, 216, 230, 1);
         color: white;
     }
     
@@ -323,7 +341,7 @@
     #formPost,
     #formUsers {
         box-shadow: 0 0 2em black;
-        background-color: rgba(255, 255, 255, 0.5);
+        background-color: rgba(255, 255, 255, 0.9);
         border: 3px solid rgba(0, 0, 0, 0.3);
         padding: 10px;
         width: 70%;
@@ -417,4 +435,8 @@
     
     .edit {
         padding-left: 10%;
+    }
+    
+    .order {
+        padding-bottom: 2%;
     }

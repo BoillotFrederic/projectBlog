@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\Response;
 /**
  * Post controller.
  *
@@ -202,4 +203,11 @@ class PostController extends Controller
             ->getForm()
         ;
     }
+/*public function indexAction($name)
+{
+    $translated = $this->get('translator')->trans('Hello '.$name);
+
+    return new Response($translated);
+}*/
+
 }

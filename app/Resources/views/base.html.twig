@@ -99,7 +99,7 @@
               
               <li><a id="userLoad" href="{{ path('user_edit', { 'id': app.session.get('userId') }) }}">
                 {{ app.session.get('userName') }}
-                <img src="/uploads/{{ app.session.get('userAvatar') }}" alt="Avatar" />
+                <img class="resize" src="/uploads/{{ app.session.get('userAvatar') }}" alt="Avatar" />
               </a></li>
               
               <li><a href="{{ path('user_disconnect') }}">

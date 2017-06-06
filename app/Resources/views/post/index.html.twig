@@ -20,25 +20,25 @@
     <span class="spanLeft">Créé le {{ post.created|date('d/m/Y H:i') }}</span>
     {% endif %}
   </div>
-  <div class="posts{% if post.draftCopy == 1 %} draftCopy{% endif %}">
-    <img src="/uploads//{{ post.img }}" alt="" />
+  <div class="col s12 l12 m12 posts{% if post.draftCopy == 1 %} draftCopy{% endif %}">
+    <img class="card-panel hoverable " src="/uploads//{{ post.img }}" alt="" />
     <p class="description">
       {{ post.text }}
     </p>
     {% if app.session.get('userPermission') == 2 %}
     <ul>
       <li>
-        <a href="{{ path('post_delete', { 'id': post.id }) }}">Supprimer</a>
+        <a class="waves-effect waves-light btn" href="{{ path('post_delete', { 'id': post.id }) }}">Supprimer</a>
       </li>
       <li>
         {% if post.draftCopy == 1 %}
-        <a href="{{ path('post_publish', { 'id': post.id }) }}">Publier</a>
+        <a class="waves-effect waves-light btn" href="{{ path('post_publish', { 'id': post.id }) }}">Publier</a>
         {% else %}
-        <a href="{{ path('post_hide', { 'id': post.id }) }}">Masquer</a>
+        <a class="waves-effect waves-light btn" href="{{ path('post_hide', { 'id': post.id }) }}">Masquer</a>
         {% endif %}
       </li>
       <li>
-        <a href="{{ path('post_edit', { 'id': post.id }) }}">Editer</a>
+        <a class="waves-effect waves-light btn" href="{{ path('post_edit', { 'id': post.id }) }}">Editer</a>
       </li>
               <li>
       <button id="valid" type="submit" name="send" data-target="modal1" class="waves-effect waves-light btn" >Commentaire</button>
@@ -54,7 +54,7 @@
         </div>
    <div id="modal1" class="modal">
     <div id="modalcont" class="modal-content">
-    <h4>Commentaire ajouté</h4>  
+    <h4>Contact</h4>  
     <p class="green-text text-darken-4">Le commentaire a bien été posté !</p>    
     </div>
 <div class="modal-footer">
@@ -69,7 +69,7 @@
             <ul class="right">
             <li><a href="#" target="blank"><i class="fa fa-twitter-square fa-3x"></i></a></li>
 						<li><a  href="#" target="blank"><i class="fa fa-facebook-square fa-3x" aria-hidden="true"></i></a></li>
-            <li><a class="contact text-lighten-5 right link" href="#">Contactez Nous</a></li>
+            <li><a class="contact text-lighten-5 right link" data-target="modal1" >Contactez Nous</a></li>
            </ul>
             </div>
           </div>

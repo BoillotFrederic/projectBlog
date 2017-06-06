@@ -3,11 +3,13 @@
 
 {% block body %}
 {% if app.session.get('userPermission') == 2 %}
+<body class="create">
+<div class="col l12 s12 m12">
     <h1>Liste des utilisateurs</h1>
 
 
     <table>
-    <a id="btnAdd" href="{{ path('user_new') }}">Créer un nouvel utilisateur</a>
+ <a id="btnAdd"class="valid waves-effect waves-light btn" href="{{ path('user_new') }}">Créer un nouvel utilisateur</a>
 
     <table id="users">
 
@@ -26,7 +28,7 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('user_edit', { 'id': user.id }) }}">editer</a>
+                            <a class="waves-effect waves-light btn" href="{{ path('user_edit', { 'id': user.id }) }}">Editer</a>
                         </li>
                     </ul>
                 </td>
@@ -35,11 +37,13 @@
         </tbody>
     </table>
 
-    <ul>
+  {#  <ul>
         <li>
-            <a href="{{ path('user_new') }}">Créer un nouvel utilisateur</a>
+            <a class="valid waves-effect waves-light btn" href="{{ path('user_new') }}">Créer un nouvel utilisateur</a>
         </li>
-    </ul>
+    </ul>#}
+    </div>
+    </body>
 {% endif %}
 {% endblock %}
 

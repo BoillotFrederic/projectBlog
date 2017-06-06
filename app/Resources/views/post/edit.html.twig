@@ -3,7 +3,7 @@
 {% block body %}
 <body class="create">
 <div class="col l12 s12 m12">
-    <h1>Editer un post</h1>
+    <h1>Editer un Article</h1>
 
     <form id="formPost" name="post" method="post" enctype="multipart/form-data">
       <div>
@@ -12,9 +12,9 @@
       </div>
       <div>
         <label for="text" class="required">Texte</label>
-        <textarea id="text" name="text" required="required">{{ post.text }}</textarea>
+        <textarea id="text" name="text" required="required" style="resize:none">{{ post.text }}</textarea>
       </div>
-      <input type="submit" value="Editer" />
+      <input class="waves-effect waves-light btn" type="submit" value="Editer" />
     </form>
     </div>
     </body>

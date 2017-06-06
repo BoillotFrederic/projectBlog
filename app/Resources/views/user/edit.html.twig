@@ -3,7 +3,7 @@
 {% block body %}
 <body class="create">
 <div class="col l12 s12 m12">
-    <h1>Editer un utilisateur</h1>
+    <h1>Editer un Utilisateur</h1>
 
     <form id="formUsers" method="post" enctype="multipart/form-data">
       {% if app.session.get('userPermission') == 2 %}
@@ -18,7 +18,7 @@
       </div>
       <div>
         <label for="password">Mot de passe</label>
-        <input type="submit" value="Envoyer">
+        <input class="waves-effect waves-light btn" type="submit" value="Envoyer">
 
         <input type="password" id="password" name="password" value="">
       </div>
@@ -31,21 +31,21 @@
         <input type="file" id="avatar" name="avatar" />
       </div>
       <div>
-        <input type="submit" value="Editer">
+        <input class="waves-effect waves-light btn" type="submit" value="Editer">
       </div>
+    </div>
     </form>
-    {% if app.session.get('userPermission') == 2 %}
-    <ul>
-        <li>
-            <a href="{{ path('user_index') }}">Retour à la liste d'utilisateur</a>
+              {% if app.session.get('userPermission') == 2 %}
+    <ul class="valid editinput">
+        <li class="edit">
+            <a class=" waves-effect waves-light btn" href="{{ path('user_index') }}">Retour à la liste d'utilisateur</a>
         </li>
-        <li>
+        <li class="edit">
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input class="waves-effect waves-light btn" type="submit" value="Supprimer">
             {{ form_end(delete_form) }}
         </li>
     </ul>
-    </div>
     </body>
     {% endif %}
 {% endblock %}

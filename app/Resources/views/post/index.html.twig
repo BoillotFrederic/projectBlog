@@ -20,15 +20,13 @@
     <span class="spanLeft">Créé le {{ post.created|date('d/m/Y H:i') }}</span>
     {% endif %}
   </div>
-  <div class=" posts{% if post.draftCopy == 1 %} draftCopy{% endif %}">
+  <div class="col s12 l12 m12 posts{% if post.draftCopy == 1 %} draftCopy{% endif %}">
     <img class="card-panel hoverable " src="/uploads//{{ post.img }}" alt="" />
-    <p class="description">
-      {{ post.text }}
-    </p>
+      <p class="text">{{ post.text }}</p
     {% if app.session.get('userPermission') == 2 %}
     <ul>
       <li>
-        <a class="waves-effect waves-light btn" href="{{ path('post_delete', { 'id': post.id }) }}">Supprimer</a>
+        <a class="waves-effect  waves-light btn" href="{{ path('post_delete', { 'id': post.id }) }}">Supprimer</a>
       </li>
       <li>
         {% if post.draftCopy == 1 %}
@@ -55,13 +53,27 @@
    <div id="modal1" class="modal">
     <div id="modalcont" class="modal-content">
     <h4>Contact</h4>  
-    <p class="green-text text-darken-4">Le commentaire a bien été posté !</p>    
+    <p class="green-text text-darken-4">Simplon Boulogne</p>
+    <p class="green-text text-darken-4">10 Rue des Carreaux</p>  
+    <p class="green-text text-darken-4">Boulogne sur mer 62200</p>
+    <p class="green-text text-darken-4">simplon.co@gmail.com</p>       
     </div>
 <div class="modal-footer">
-  <a  class="modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
+  <a  class="modal-action modal-close light-blue darken-4 waves-effect waves-green btn-flat">Fermer</a>
 </div>
 </div>
-
+   <div id="modal1" class="modal">
+    <div id="modalcont" class="modal-content">
+    <h4>Ajouter un Commentaire</h4>  
+    <form id="formCom" method="post">
+    <label for="commentaire">Votre commentaire</label>
+    <textarea class="green-text text-darken-4"></textarea>
+    <input class="waves-effect  waves-light btn" type="submit" value="Editer">    
+    </div>
+<div class="modal-footer">
+  <a  class="modal-action modal-close light-blue darken-4 waves-effect waves-green btn-flat">Fermer</a>
+</div>
+</div>
 	 <footer class="page-footer">
           <div class="footer-copyright">
             <div class="container">

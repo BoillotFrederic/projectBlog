@@ -218,9 +218,9 @@
         
         #success,
         #error {
+            font-family: moonlight;
             border: 3px solid rgba(0, 0, 0, 0.3);
-            font-family: moolight;
-            font-size: 30px;
+            font-size: 40px;
             position: fixed;
             width: 40%;
             left: calc(50% - 20%);
@@ -337,6 +337,22 @@
             #connectBox input[type="password"] {
                 display: block;
                 width: 90%;
+            }
+            #success,
+            #error {
+                border: 3px solid rgba(0, 0, 0, 0.3);
+                font-family: moonlight;
+                font-size: 30px;
+                position: fixed;
+                width: 100%;
+                /*left: calc(50% - 20%);*/
+                top: 20%;
+                margin-right: 20%;
+                /*padding: 50px;*/
+                color: white;
+                text-align: center;
+                /*z-index: 2;*/
+                animation-duration: 5s;
             }
         }
         

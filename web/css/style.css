@@ -39,7 +39,7 @@
     h1 {
         animation-duration: 3s;
         animation-name: slidein;
-        font-size: 50px;
+        font-size: 60px;
         text-shadow: 1px 1px black;
         font-family: 'moonlight';
         text-align: center;
@@ -51,6 +51,16 @@
         color: lightsalmon;
     }
     
+    .titre {
+        animation-duration: 3s;
+        animation-name: slideout;
+        color: lightskyblue;
+    }
+    
+    .titre:hover {
+        color: lightyellow;
+    }
+    
     @keyframes slidein {
         from {
             margin-left: 100%;
@@ -59,6 +69,19 @@
         to {
             margin-left: 0%;
             width: 100%;
+        }
+    }
+    
+    @keyframes slideout {
+        from {
+            margin-right: 41%;
+            /*    width: 300%;*/
+            /*    left: -520px;*/
+            /*  width: 500px;*/
+        }
+        to {
+            margin-right: 0%;
+            /*    width: 300%;*/
         }
     }
     /*NavBar*/
@@ -228,14 +251,23 @@
         position: relative;
         width: 70%;
         font-family: proto;
-        background-color: rgba(211, 211, 211, 0.5);
+        background-color: rgba(90, 135, 156, 0.4);
         border-bottom: 3px solid rgba(0, 0, 0, 0.3);
         border-left: 3px solid rgba(0, 0, 0, 0.3);
         border-right: 3px solid rgba(0, 0, 0, 0.3);
-        /*padding: 10 10px 15px 10px;*/
+        padding: 10 10px 15px 10px;
         margin: 0 auto 20px auto;
-        min-height: 60px;
+        min-height: 30%;
+        height: 30%;
         padding-bottom: 2%;
+    }
+    
+    .posts h2 {
+        font-size: 30px;
+        display: inline-block;
+        text-align: center;
+        padding-top: 1%;
+        width: 70%;
     }
     
     .posts ul {
@@ -288,37 +320,33 @@
     }
     
     .time {
-        margin: 20px auto 0 auto;
+        margin: 20px auto;
         width: 70%;
-        background-color: rgba(0, 0, 0, 0.3);
-        border-top: 3px solid rgba(0, 0, 0, 0.1);
-        border-right: 3px solid rgba(0, 0, 0, 0.1);
-        border-left: 3px solid rgba(0, 0, 0, 0.1);
-        line-height: 30px;
-        text-align: left;
+        background-color: rgba(0, 0, 0, 0.5);
+        /*        border-top: 2px solid rgba(0, 0, 0, 0.1);*/
+        border-right: 2px solid rgba(0, 0, 0, 0.1);
+        border-left: 2px solid rgba(0, 0, 0, 0.1);
     }
     
     .time span {
-        padding-top: 1%;
+        font-size: 20px;
+        padding-top: 2%;
         padding-left: 1%;
-        height: 25px;
-    }
-    
-    .spanRight {
-        color: rgba(25, 23, 59, 1)!important;
+        color: rgba(255, 80, 0, 1)!important;
     }
     
     .time .spanLeft {
-        color: black;
+        color: rgba(255, 80, 0, 1)!important;
         float: left;
     }
     
     .time .spanRight {
-        color: rgba(25, 23, 59, 1)!important;
+        color: rgba(255, 102, 0, 1)!important;
         float: right;
     }
     
     .draftCopy {
+        color: white;
         background-color: rgba(0, 0, 0, 0.8);
     }
     /*Button*/

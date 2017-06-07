@@ -7,8 +7,12 @@
 
     <form id="formPost" name="post" method="post" enctype="multipart/form-data">
       <div>
-        <label for="img" class="required">Photo</label>
+        <label for="img" >Photo</label>
         <input type="file" id="img" name="img" />
+      </div>
+       <div>
+        <label for="titre" class="required">Titre</label>
+        <input id="titre" name="titre" required="required" value="{{post.titre}}"/>
       </div>
       <div>
         <label for="text" class="required">Texte</label>

@@ -55,10 +55,23 @@ class Post
     /**
      * @var string
      *
+     * @ORM\Column(name="titre", type="text")
+     */
+    private $titre;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="text", type="text")
      */
     private $text;
-
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="commentaire", type="text")
+     */
+    private $com;
     /**
      * @var int
      *
@@ -138,7 +151,29 @@ class Post
     {
         return $this->img;
     }
+        /**
+     * Set titre
+     *
+     * @param string $titre
+     *
+     * @return Post
+     */
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
 
+        return $this;
+    }
+
+    /**
+     * Get titre
+     *
+     * @return string
+     */
+    public function getTitre()
+    {
+        return $this->titre;
+    }
     /**
      * Set text
      *
@@ -163,6 +198,29 @@ class Post
         return $this->text;
     }
 
+            /**
+     * Set commentaire
+     *
+     * @param string $commentaire
+     *
+     * @return Post
+     */
+    public function setCom($commentaire)
+    {
+        $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Get commentaire
+     *
+     * @return string
+     */
+    public function getCom()
+    {
+        return $this->commentaire;
+    }
     /**
      * Set modified
      *

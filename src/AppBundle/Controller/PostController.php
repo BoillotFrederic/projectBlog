@@ -13,7 +13,9 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Post controller.
  *
- * @Route("post")
+ * 
+ *@Route("{_locale}/post")
+ * defaults={_locale": "fr"}
  */
 class PostController extends Controller
 {
@@ -43,11 +45,12 @@ class PostController extends Controller
      */
     public function newAction(Request $request)
     {
-      if($this->get('session')->get('userPermission') != 2)
-      return $this->redirectToRoute('post_index');
+      /*if($this->get('session')->get('userPermission') != 2)
+      return $this->redirectToRoute('post_index');*/
 
         if ($request->getMethod() == 'POST') {
            $post = new Post();
+           $post->setTitre($request->get('titre'));
            $post->setText($request->get('text'));
            $post->setUserId($this->get('session')->get('userId'));
            $post->setDraftCopy(1);
@@ -99,6 +102,7 @@ class PostController extends Controller
 
 
             $post->setText($request->get('text'));
+	    $post->setTitre($request->get('titre'));
             $post->fieldModified();
 
             $em->flush();
@@ -132,7 +136,7 @@ class PostController extends Controller
         $post = $em->getRepository('AppBundle:Post')->find($id);
         
         if (!$post)
-        throw $this->createNotFoundException('Pas de produit pour l\'id ' . $id);
+        throw $this->createNotFoundException('Pas d\'article pour l\'id ' . $id);
 
         $em->remove($post);
         $em->flush();
@@ -149,8 +153,8 @@ class PostController extends Controller
      */
     public function publishAction(Request $request, $id)
     {
-      if($this->get('session')->get('userPermission') != 2)
-      return $this->redirectToRoute('post_index');
+      /*if($this->get('session')->get('userPermission') != 2)
+      return $this->redirectToRoute('post_index');*/
 
       $em = $this->getDoctrine()->getManager();
       $post = $em->getRepository('AppBundle:Post')->find($id);
@@ -204,11 +208,5 @@ class PostController extends Controller
             ->getForm()
         ;
     }
-/*public function indexAction($name)
-{
-    $translated = $this->get('translator')->trans('Hello '.$name);
-
-    return new Response($translated);
-}*/
-
+    
 }

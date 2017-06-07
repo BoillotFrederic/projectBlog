@@ -3,7 +3,7 @@
 {% block body %}
 <body class="create">
 <div class="col l12 s12 m12">
-    <h1>Editer un Utilisateur</h1>
+    <h1>Edition des Comptes</h1>
 
     <form id="formUsers" method="post" enctype="multipart/form-data">
       {% if app.session.get('userPermission') == 2 %}
@@ -41,9 +41,7 @@
             <a class="light-blue darken-4 btnedit waves-effect waves-light btn" href="{{ path('user_index') }}">Retour à la liste d'utilisateur</a>
         </li>
         <li class="edit">
-            {{ form_start(delete_form) }}
-                <input class="light-blue darken-4 waves-effect waves-light btn" type="submit" value="Supprimer">
-            {{ form_end(delete_form) }}
+            <a class="light-blue darken-4 btnedit waves-effect waves-light btn" href="{{ path('user_delete', { 'id': user.id }) }}">Supprimer</a>
         </li>
     </ul>
     </div>

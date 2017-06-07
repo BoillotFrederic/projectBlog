@@ -101,6 +101,7 @@ class userController extends Controller
     public function disconnect()
     {
       $this->get('session')->set('connected', false);
+      $this->get('session')->set('userId', 0);
       $this->get('session')->set('userPermission', 0);
       $this->addFlash('success', 'Vous avez été deconnecté !');
       return $this->redirectToRoute('post_index');
@@ -186,24 +187,27 @@ class userController extends Controller
     /**
      * Deletes a user entity.
      *
-     * @Route("/{id}", name="user_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="user_delete")
+     * @Method("GET")
      */
-    public function deleteAction(Request $request, user $user)
+    public function deleteAction(Request $request, $id)
     {
-      if(!$this->get('session')->get('userPermission') != 2)
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('AppBundle:user')->find($id);
+
+      if($this->get('session')->get('userPermission') != 2)
       return $this->redirectToRoute('post_index');
 
-        $form = $this->createDeleteForm($user);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('AppBundle:user')->find($id);
+        
+        if (!$user)
+        throw $this->createNotFoundException('Pas d\'utilisateur pour l\'id ' . $id);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($user);
-            $em->flush();
-            $this->addFlash('success', 'L\'utilisateur a bien été supprimé !');
-        }
+        $em->remove($user);
+        $em->flush();
 
+        $this->addFlash('success', 'L\'utilisateur a bien été supprimé !');
         return $this->redirectToRoute('user_index');
     }
 

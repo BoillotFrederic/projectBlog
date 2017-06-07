@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<body class="create">
+<div class="col l12 s12 m12">
+    <h1>Editer un Article</h1>
+
+    <form id="formPost" name="post" method="post" enctype="multipart/form-data">
+      <div>
+        <label for="img" >Photo</label>
+        <input type="file" id="img" name="img" />
+      </div>
+       <div>
+        <label for="titre" class="required">Titre</label>
+        <input id="titre" name="titre" required="required" value="{{post.titre}}"/>
+      </div>
+      <div>
+        <label for="text" class="required">Texte</label>
+        <textarea id="text" name="text" required="required" style="resize:none">{{ post.text }}</textarea>
+      </div>
+      <input class="waves-effect waves-light btn" type="submit" value="Editer" />
+    </form>
+    </div>
+    </body>
+{% endblock %}

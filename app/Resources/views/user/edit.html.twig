@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<body class="create">
+<div class="col l12 s12 m12">
+    <h1>Edition des Comptes</h1>
+
+    <form id="formUsers" method="post" enctype="multipart/form-data">
+      {% if app.session.get('userPermission') == 2 %}
+      <div>
+        <label for="pseudo">Pseudo</label>
+        <input type="text" id="pseudo" name="pseudo" value="{{ user.name }}">
+      </div>
+      {% endif %}
+      <div>
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" value="{{ user.email }}">
+      </div>
+      <div>
+        <label for="password">Mot de passe</label>
+        <input class="waves-effect waves-light  btn" type="submit" value="Envoyer">
+
+        <input type="password" id="password" name="password" value="">
+      </div>
+      <div>
+        <label for="repassword">Retaper votre mot de passe</label>
+        <input type="password" id="repassword" name="repassword" value="">
+      </div>
+      <div>
+        <label for="avatar" class="required">Avatar</label>
+        <input type="file" id="avatar" name="avatar" />
+      </div>
+      <div>
+        <input class="waves-effect  waves-light btn" type="submit" value="Editer">
+      </div>
+    </div>
+    </form>
+              {% if app.session.get('userPermission') == 2 %}
+    <ul class="valid editinput">
+        <li class="edit">
+            <a class="light-blue darken-4 btnedit waves-effect waves-light btn" href="{{ path('user_index') }}">Retour à la liste d'utilisateur</a>
+        </li>
+        <li class="edit">
+            <a class="light-blue darken-4 btnedit waves-effect waves-light btn" href="{{ path('user_delete', { 'id': user.id }) }}">Supprimer</a>
+        </li>
+    </ul>
+    </div>
+    </body>
+    {% endif %}
+{% endblock %}

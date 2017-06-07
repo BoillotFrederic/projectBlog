@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div  class="col l12 s12 m12">
+		 <div class="parallax-container">
+      <div class="parallax"><img src="{{ asset('parallax.jpg')}}"></div>
+			<div class="col l12 s12 m12"><h1 class="tobot">Project Blog</h1></div>
+      <div class="col l12 s12 m12"><h1 class="titre">Le blog qui partage les expériences Live</h1></div>
+    </div>
+  {% if app.session.get('userPermission') == 2%}
+  <a id="btnAdd" href="{{ path('post_new') }}">Créer un nouvel article</a>
+  {% endif %}
+  {% if app.session.get('userPermission') == 1%}
+  <a id="btnAdd" href="{{ path('post_new') }}">Créer un nouvel article</a>
+  {% endif %}
+  {% for post in posts %}
+  {% if app.session.get('userPermission') == 2 or app.session.get('userId') == post.userId or post.draftCopy != 1 %}
+  <div class="col s12 l12 m12 time">
+    {% if post.modified != post.created %}
+    <span class="col s6 l6 m6 spanRight">Modifié le {{ post.modified|date('d/m/Y H:i') }}</span>
+    <span class="col s6 l6 m6 spanLeft">Créé le {{ post.created|date('d/m/Y H:i') }}</span>
+    {% else %}
+    <span class="col s6 l6 m6 spanLeft">Créé le {{ post.created|date('d/m/Y H:i') }}</span>
+    {% endif %}
+  </div>
+  <div class="col s12 l12 m12 posts{% if post.draftCopy == 1 %} draftCopy{% endif %}">
+  <h2>{{ post.titre }}</h2>
+    <img class="card-panel hoverable " src="/uploads//{{ post.img }}" alt="" />
+      <p class="text">{{ post.text }}</p>
+    {% if app.session.get('userPermission') == 2 %}
+    <ul>
+      <li>
+        <a class="waves-effect  waves-light btn" href="{{ path('post_delete', { 'id': post.id }) }}">Supprimer</a>
+      </li>
+      <li>
+        {% if post.draftCopy == 1 %}
+        <a class="waves-effect waves-light btn" href="{{ path('post_publish', { 'id': post.id }) }}">Publier</a>
+        {% else %}
+        <a class="waves-effect waves-light btn" href="{{ path('post_hide', { 'id': post.id }) }}">Masquer</a>
+        {% endif %}
+      </li>
+      <li>
+        <a class="waves-effect waves-light btn" href="{{ path('post_edit', { 'id': post.id }) }}">Editer</a>
+      </li>
+       <li>
+      <button id="valid" type="submit" name="send" data-target="modal2" class="waves-effect waves-light btn" >Commentaire</button>
+      </li>
+    </ul>
+    {% endif %}
+  </div>
+  {% endif %}
+  {% endfor %}
+  <div class="totop col s1 m1 l1">
+            <a href="#" class="js-scrollTo" ><i class="totop fa fa-arrow-circle-up fa-2x js-scrollTo" aria-hidden="true"></i></a>
+        </div>
+   <div id="modal1" class="modal">
+    <div id="modalcont" class="modal-content">
+    <h4>Contact</h4>  
+    <p class="green-text text-darken-4">Simplon Boulogne</p>
+    <p class="green-text text-darken-4">10 Rue des Carreaux</p>  
+    <p class="green-text text-darken-4">Boulogne sur mer 62200</p>
+    <p class="green-text text-darken-4">simplon.co@gmail.com</p>       
+    </div>
+<div class="modal-footer">
+  <a  class="modal-action modal-close light-blue darken-4 waves-effect waves-green btn-flat">Fermer</a>
+</div>
+</div>
+   <div id="modal2" class="modal">
+    <div id="modalcont" class="modal-content">
+    <h4>Ajouter un Commentaire</h4>  
+    <form id="formCom" method="post">
+    <label for="commentaire">Votre commentaire</label>
+    <textarea id="commentaire" name="commentaire" class="blue-text text-darken-4"></textarea>
+    <input class="waves-effect  waves-light btn" type="submit" value="Editer">  
+    </form>  
+    </div>
+<div class="modal-footer">
+  <a  class="modal-action modal-close light-blue darken-4 waves-effect waves-green btn-flat">Fermer</a>
+</div>
+</div>
+	 <footer class="page-footer">
+          <div class="footer-copyright">
+            <div class="container">
+            <a class="contact">© 2017 François&Frederic</a>
+            <ul class="right">
+            <li><a href="#" target="blank"><i class="fa fa-twitter-square fa-3x"></i></a></li>
+						<li><a  href="#" target="blank"><i class="fa fa-facebook-square fa-3x" aria-hidden="true"></i></a></li>
+            <li><a class="contact text-lighten-5 right link" data-target="modal1" >Contactez Nous</a></li>
+           </ul>
+            </div>
+          </div>
+        </footer>
+{% endblock %}

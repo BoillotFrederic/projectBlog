@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<body class="create">
+<div class="col l12 s12 m12">
+    <h1>Créer un Nouvel article</h1>
+
+    <form id="formPost" method="post" enctype="multipart/form-data">
+      <div>
+      </label for="img">Photo</label>
+        <input id="img" name="img" type="file" />
+      </div>
+      <div>
+        <label for="titre" class="required">Titre</label>
+        <input id="titre" name="titre" required="required"/>
+      </div>
+      <div>
+        <label for="text" class="required">Texte</label>
+        <textarea id="text" name="text" required="required"></textarea>
+      </div>
+        <button class=" waves-effect waves-light light-blue darken-4 btn" id="valider" name="valider" type="submit" />Valider</button>
+    </form>
+
+    <ul class="newpost">
+        <li>
+            <a class="waves-effect waves-light light-blue darken-4 btn" href="{{ path('post_index') }}">Retour à la page d'administration</a>
+        </li>
+    </ul>
+    </div>
+    </body>
+{% endblock %}

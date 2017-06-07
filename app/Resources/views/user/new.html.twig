@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<body class="create">
+<div class="col l12 s12 m12">
+    <h1>Créer un compte</h1>
+
+    <form id="formUsers" method="post">
+
+      <div>
+        <label for="pseudo">Pseudo</label>
+        <input type="text" id="pseudo" name="pseudo" value="">
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" value="">
+      </div>
+      <div>
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" name="password" value="">
+      </div>
+      <div>
+        <label for="repassword">Retaper votre mot de passe</label>
+        <input type="password" id="repassword" name="repassword" value="">
+      </div>
+      <div>
+        <input class="waves-effect light-blue darken-4 waves-light btn" type="submit" value="Envoyer">
+      </div>
+    </form>
+
+    <ul class="valid">
+        <li>
+            <a class="waves-effect light-blue darken-4 waves-light btn valid" href="{{ path('post_index') }}">Retour au blog</a>
+        </li>
+    </ul>
+    </div>
+    </body>
+{% endblock %}

@@ -1,0 +1,14 @@
+post_title: Project Blog
+edit_post_success: Article %id% succesfuly edited !
+user_log: Connexion
+post_new: Create Post
+user_new: Create Account
+post_edit: Edit
+post_delete: Delete
+post_publish: Publish
+post_hide: Hide
+user_index:
+user_edit: Edit
+user_disconnect: Log out
+post_index: 
+user_connect: Log in

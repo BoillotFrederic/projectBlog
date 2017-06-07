@@ -1,0 +1,14 @@
+post_title: Projet Blog
+edit_post_success: L'article %id% a été édité avec succès !
+user_log: Connexion
+post_create: Projet Blog
+user_new: Créer Compte
+post_edit: Editer
+post_delete: Supprimer
+post_publish: Publier
+post_hide: Masquer
+user_index:
+user_edit: Editer
+user_disconnect: Se déconnecter
+post_index: 
+user_connect: Se connecter

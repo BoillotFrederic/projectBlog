@@ -1,0 +1,49 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{% if app.session.get('userPermission') == 2 %}
+<body class="create">
+<div class="col l12 s12 m12">
+    <h1>Liste des utilisateurs</h1>
+
+
+    <table class="order">
+ <a id="btnAdd"class="valid waves-effect waves-light btn" href="{{ path('user_new') }}">Créer un nouvel utilisateur</a>
+
+    <table id="users">
+
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a class="waves-effect  waves-light btn" href="{{ path('user_edit', { 'id': user.id }) }}">Editer</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+  {#  <ul>
+        <li>
+            <a class="valid waves-effect waves-light btn" href="{{ path('user_new') }}">Créer un nouvel utilisateur</a>
+        </li>
+    </ul>#}
+    </div>
+    </body>
+{% endif %}
+{% endblock %}
+

@@ -1,3 +1,11 @@
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+<<<<<<< HEAD
+=======
+contact:
+    path:     /{_locale}/post
+    defaults: { _controller: AppBundle:Post:index }
+    requirements:
+        _locale: '%app.locales%'
+>>>>>>> 1f12b8b83a6a7cc398f012ea912b5321e8ae2107

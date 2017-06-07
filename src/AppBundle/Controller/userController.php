@@ -103,7 +103,7 @@ class userController extends Controller
       $this->get('session')->set('connected', false);
       $this->get('session')->set('userId', 0);
       $this->get('session')->set('userPermission', 0);
-      $this->addFlash('success', 'Vous avez été deconnecté !');
+      $this->addFlash('success', 'Vous avez été déconnecté !');
       return $this->redirectToRoute('post_index');
     }
 
@@ -150,7 +150,7 @@ class userController extends Controller
             if($request->get('password') == $request->get('repassword')){
 
               if (!$user)
-              throw $this->createNotFoundException('Pas de utilisateur pour l\'id ' . $user->getId());
+              throw $this->createNotFoundException('Pas d\'utilisateur pour l\'id ' . $user->getId());
 
               $user->setEmail($request->get('email'));
 

@@ -1,478 +1,500 @@
-    @font-face {
-        src: url('../Moonlights on the Beach.ttf');
-        font-family: moonlight;
-    }
-    
-    @font-face {
-        src: url('../Prototype.ttf');
-        font-family: proto;
-    }
-    
-    * {
-        margin: 0;
-        padding: 0;
-    }
-    
-    body {
-        position: relative;
-        padding-top: 30px;
-        background-image: url('../creercompte2.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-        text-align: center;
-    }
-    /*Lists*/
-    
-    ul {
-        list-style: none;
-    }
-    /*Links*/
-    
-    a {
-        text-decoration: none;
-        color: darkgreen;
-    }
-    /*Title*/
-    
-    h1 {
-        animation-duration: 3s;
-        animation-name: slidein;
-        font-size: 60px;
-        text-shadow: 1px 1px black;
-        font-family: 'moonlight';
-        text-align: center;
-        padding: 30px;
-        color: white;
-    }
-    
-    h1:hover {
-        color: lightsalmon;
-    }
-    
-    .titre {
-        animation-duration: 3s;
-        animation-name: slideout;
-        color: lightskyblue;
-    }
-    
-    .titre:hover {
-        color: lightyellow;
-    }
-    
-    @keyframes slidein {
-        from {
-            margin-left: 100%;
-            width: 300%;
+        @font-face {
+            src: url('../Moonlights on the Beach.ttf');
+            font-family: moonlight;
         }
-        to {
-            margin-left: 0%;
+        
+        @font-face {
+            src: url('../Prototype.ttf');
+            font-family: proto;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            position: relative;
+            padding-top: 30px;
+            background-image: url('../creercompte2.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            text-align: center;
+        }
+        /*Lists*/
+        
+        ul {
+            list-style: none;
+        }
+        /*Links*/
+        
+        a {
+            text-decoration: none;
+            color: darkgreen;
+        }
+        /*Title*/
+        
+        h1 {
+            animation-duration: 3s;
+            animation-name: slidein;
+            font-size: 60px;
+            text-shadow: 1px 1px black;
+            font-family: 'moonlight';
+            text-align: center;
+            padding: 30px;
+            color: white;
+        }
+        
+        h1:hover {
+            color: lightsalmon;
+        }
+        
+        .titre {
+            animation-duration: 3s;
+            animation-name: slideout;
+            color: lightskyblue;
+        }
+        
+        .titre:hover {
+            color: lightyellow;
+        }
+        
+        @keyframes slidein {
+            from {
+                margin-left: 100%;
+                width: 300%;
+            }
+            to {
+                margin-left: 0%;
+                width: 100%;
+            }
+        }
+        
+        @keyframes slideout {
+            from {
+                margin-right: 41%;
+            }
+            to {
+                margin-right: 0%;
+            }
+        }
+        /*NavBar*/
+        
+        .logo {
+            width: 27px;
+        }
+        
+        #navBar {
+            box-shadow: 0 0 2em black;
+            text-align: justify;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 30px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-bottom: 3px solid rgba(0, 0, 0, 0.3);
+            width: 100%;
+            z-index: 1;
+        }
+        
+        #navBar ul {
+            text-align: justify;
+        }
+        
+        #navBar li {
+            text-align: justify;
+            display: inline-block;
+            line-height: 30px;
+            margin-right: 20px;
+        }
+        
+        #navBar a {
+            display: inline-flex;
+            text-align: justify;
+            color: white;
+            text-decoration: none;
+            outline: none;
+        }
+        
+        #navBar a:hover {
+            color: orange;
+        }
+        
+        #navBar #userLoad {
+            position: relative;
+        }
+        
+        #navBar #userLoad img {
+            position: absolute;
+            left: calc(50px - 50px);
+            top: 30px;
+            height: 100px;
+            width: 100px;
+            display: none;
+        }
+        
+        .resize {
+            height: 60px;
+            width: 60px;
+        }
+        
+        #navBar #userLoad:hover img {
+            display: block;
+        }
+        
+        .responsive {
+            padding-bottom: 2%;
+        }
+        
+        footer {
+            color: orange!important;
+            background-color: rgba(0, 0, 76, 1)!important;
+        }
+        
+        footer li {
+            color: orange;
+            display: inline-block;
+        }
+        
+        footer a:hover {
+            color: white;
+        }
+        
+        footer a {
+            color: orange;
+        }
+        
+        .totop {
+            color: orange;
+            position: fixed;
+            right: 0;
+            padding-right: 3%;
+            padding-bottom: 2%;
+            bottom: 0;
+        }
+        
+        .totop:hover {
+            color: white;
+        }
+        
+        .valid {
+            padding-top: 1%;
+            padding-bottom: 1%;
+        }
+        /*Connexion*/
+        
+        #connectBox {
+            color: white;
+            display: none;
+            right: 0;
+            position: absolute;
+            width: 21%;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-left: 3px solid rgba(0, 0, 0, 0.3);
+            border-bottom: 3px solid rgba(0, 0, 0, 0.3);
+            padding: 2%;
+            text-align: center;
+        }
+        
+        #connectBox label {
+            color: white;
+            display: block;
+            text-align: justify;
+            margin: 5px;
+        }
+        
+        #connectBox input[type="text"],
+        #connectBox input[type="password"] {
+            display: block;
+            width: 90%;
+        }
+        
+        #btnConnect {
+            /* display: inline-block;*/
+        }
+        /*Error and success*/
+        
+        #success,
+        #error {
+            border: 3px solid rgba(0, 0, 0, 0.3);
+            font-family: moolight;
+            font-size: 30px;
+            position: fixed;
+            width: 40%;
+            left: calc(50% - 20%);
+            top: 20%;
+            padding: 50px;
+            color: white;
+            text-align: center;
+            z-index: 2;
+            animation-duration: 5s;
+        }
+        
+        #success {
+            background-color: rgba(90, 135, 156, 0.6);
+        }
+        
+        #error {
+            background-color: rgba(100, 0, 0, 0.2);
+        }
+        /*Posts*/
+        
+        .posts {
+            box-shadow: 0 0 2em black;
+            position: relative;
+            width: 70%;
+            font-family: proto;
+            background-color: rgba(90, 135, 156, 0.4);
+            border-bottom: 3px solid rgba(0, 0, 0, 0.3);
+            border-left: 3px solid rgba(0, 0, 0, 0.3);
+            border-right: 3px solid rgba(0, 0, 0, 0.3);
+            padding: 10 10px 15px 10px;
+            margin: 0 auto 20px auto;
+            min-height: 30%;
+            height: 30%;
+            padding-bottom: 2%;
+        }
+        
+        .posts h2 {
+            font-size: 30px;
+            display: inline-block;
+            text-align: center;
+            padding-top: 1%;
+            width: 70%;
+        }
+        
+        .posts ul {
+            position: absolute;
+            right: 0;
+            bottom: 10px;
+            list-style: none;
+        }
+        
+        .posts li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        
+        .posts input,
+        .posts a {
+            font-size: 16px;
+            font-family: sans-serif;
+            text-decoration: none;
+            color: rgba(25, 23, 59, 1)!important;
+            background-color: white;
+            padding: 2px 7px 2px 7px;
+            border: 1px solid darkgrey;
+            border-radius: 7px;
+        }
+        
+        .posts img {
+            width: 80%;
+            margin: 20px;
+        }
+        
+        .posts p {
+            margin: 10px 10px 40px 10px;
+        }
+        
+        .newpost {
+            padding-top: 1%;
+            padding-bottom: 1%;
+        }
+        
+        @media screen and (min-width: 500px) and (max-width: 10000px) {
+            .text {
+                visibility: hidden;
+                opacity: 0;
+                transition: visibility 0s, opacity 0.5s linear;
+            }
+            .posts:hover .text {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+        
+        @media screen and (max-width: 400px) {
+            #connectBox {
+                color: white;
+                display: none;
+                position: absolute;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.2);
+                border-left: 3px solid rgba(0, 0, 0, 0.3);
+                border-bottom: 3px solid rgba(0, 0, 0, 0.3);
+                padding: 2%;
+                text-align: center;
+            }
+            #connectBox label {
+                color: white;
+                display: block;
+                text-align: justify;
+                margin: 5px;
+            }
+            #connectBox input[type="text"],
+            #connectBox input[type="password"] {
+                display: block;
+                width: 90%;
+            }
+        }
+        
+        .time {
+            margin: 20px auto;
+            width: 70%;
+            background-color: rgba(0, 0, 0, 0.5);
+            /*        border-top: 2px solid rgba(0, 0, 0, 0.1);*/
+            border-right: 2px solid rgba(0, 0, 0, 0.1);
+            border-left: 2px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .time span {
+            font-size: 20px;
+            padding-top: 2%;
+            padding-left: 1%;
+            color: rgba(255, 80, 0, 1)!important;
+        }
+        
+        .time .spanLeft {
+            color: rgba(255, 80, 0, 1)!important;
+            float: left;
+        }
+        
+        .time .spanRight {
+            color: rgba(255, 102, 0, 1)!important;
+            float: right;
+        }
+        
+        .draftCopy {
+            color: white;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        /*Button*/
+        
+        #btnAdd {
+            display: inline-block;
+            margin: 40px auto 40px auto;
+            padding: 30px;
+            background-color: lightgrey;
+            border-radius: 12px;
+            font-size: 1.2em;
+            height: 5%;
+            text-decoration: none;
+            color: black;
+        }
+        
+        #btnAdd:hover {
+            box-shadow: 0 0 2em black;
+            background-color: rgba(173, 216, 230, 0.9);
+            color: darkorange;
+        }
+        
+        .parallax {
+            box-shadow: 0 0 2em black;
             width: 100%;
         }
-    }
-    
-    @keyframes slideout {
-        from {
-            margin-right: 41%;
-            /*    width: 300%;*/
-            /*    left: -520px;*/
-            /*  width: 500px;*/
+        /*Forms*/
+        
+        #formPost,
+        #formUsers {
+            box-shadow: 0 0 2em black;
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 3px solid rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            width: 70%;
+            margin: auto;
+            padding-left: 2%;
+            padding-right: 2%;
         }
-        to {
-            margin-right: 0%;
-            /*    width: 300%;*/
+        
+        #formPost label,
+        #formUsers label {
+            display: block;
+            text-align: left;
+            color: black;
+            font-size: 20px;
+            text-align: justify;
         }
-    }
-    /*NavBar*/
-    
-    .logo {
-        width: 27px;
-    }
-    
-    #navBar {
-        box-shadow: 0 0 2em black;
-        text-align: justify;
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 30px;
-        background-color: rgba(0, 0, 0, 0.2);
-        border-bottom: 3px solid rgba(0, 0, 0, 0.3);
-        width: 100%;
-        z-index: 1;
-    }
-    
-    #navBar ul {
-        text-align: justify;
-    }
-    
-    #navBar li {
-        text-align: justify;
-        display: inline-block;
-        line-height: 30px;
-        margin-right: 20px;
-    }
-    
-    #navBar a {
-        display: inline-flex;
-        text-align: justify;
-        color: white;
-        text-decoration: none;
-        outline: none;
-    }
-    
-    #navBar a:hover {
-        color: orange;
-    }
-    
-    #navBar #userLoad {
-        position: relative;
-    }
-    
-    #navBar #userLoad img {
-        position: absolute;
-        left: calc(50px - 50px);
-        top: 30px;
-        height: 100px;
-        width: 100px;
-        display: none;
-    }
-    
-    .resize {
-        height: 60px;
-        width: 60px;
-    }
-    
-    #navBar #userLoad:hover img {
-        display: block;
-    }
-    
-    .responsive {
-        padding-bottom: 2%;
-    }
-    
-    footer {
-        color: orange!important;
-        background-color: rgba(0, 0, 76, 1)!important;
-    }
-    
-    footer li {
-        color: orange;
-        display: inline-block;
-    }
-    
-    footer a:hover {
-        color: white;
-    }
-    
-    footer a {
-        color: orange;
-    }
-    
-    .totop {
-        color: orange;
-        position: fixed;
-        right: 0;
-        padding-right: 3%;
-        padding-bottom: 2%;
-        bottom: 0;
-    }
-    
-    .totop:hover {
-        color: white;
-    }
-    
-    .valid {
-        padding-top: 1%;
-        padding-bottom: 1%;
-    }
-    /*Connexion*/
-    
-    #connectBox {
-        color: white;
-        display: none;
-        position: absolute;
-        right: 0;
-        width: 21%;
-        background-color: rgba(0, 0, 0, 0.2);
-        border-left: 3px solid rgba(0, 0, 0, 0.3);
-        border-bottom: 3px solid rgba(0, 0, 0, 0.3);
-        padding: 2%;
-        text-align: center;
-    }
-    
-    #connectBox label {
-        color: white;
-        display: block;
-        text-align: justify;
-        margin: 5px;
-    }
-    
-    #connectBox input[type="text"],
-    #connectBox input[type="password"] {
-        display: block;
-        width: 90%;
-    }
-    
-    #btnConnect {
-        /* display: inline-block;*/
-    }
-    /*Error and success*/
-    
-    #success,
-    #error {
-        border: 3px solid rgba(0, 0, 0, 0.3);
-        font-family: moolight;
-        font-size: 30px;
-        position: fixed;
-        width: 40%;
-        left: calc(50% - 20%);
-        top: 20%;
-        padding: 50px;
-        color: white;
-        text-align: center;
-        z-index: 2;
-        animation-duration: 5s;
-    }
-    
-    #success {
-        background-color: rgba(0, 100, 0, 0.4);
-    }
-    
-    #error {
-        background-color: rgba(100, 0, 0, 0.4);
-    }
-    /*Posts*/
-    
-    .posts {
-        box-shadow: 0 0 2em black;
-        position: relative;
-        width: 70%;
-        font-family: proto;
-        background-color: rgba(90, 135, 156, 0.4);
-        border-bottom: 3px solid rgba(0, 0, 0, 0.3);
-        border-left: 3px solid rgba(0, 0, 0, 0.3);
-        border-right: 3px solid rgba(0, 0, 0, 0.3);
-        padding: 10 10px 15px 10px;
-        margin: 0 auto 20px auto;
-        min-height: 30%;
-        height: 30%;
-        padding-bottom: 2%;
-    }
-    
-    .posts h2 {
-        font-size: 30px;
-        display: inline-block;
-        text-align: center;
-        padding-top: 1%;
-        width: 70%;
-    }
-    
-    .posts ul {
-        position: absolute;
-        right: 0;
-        bottom: 10px;
-        list-style: none;
-    }
-    
-    .posts li {
-        display: inline-block;
-        margin-right: 10px;
-    }
-    
-    .posts input,
-    .posts a {
-        font-size: 16px;
-        font-family: sans-serif;
-        text-decoration: none;
-        color: rgba(25, 23, 59, 1)!important;
-        background-color: white;
-        padding: 2px 7px 2px 7px;
-        border: 1px solid darkgrey;
-        border-radius: 7px;
-    }
-    
-    .posts img {
-        width: 80%;
-        margin: 20px;
-    }
-    
-    .posts p {
-        margin: 10px 10px 40px 10px;
-    }
-    
-    .newpost {
-        padding-top: 1%;
-        padding-bottom: 1%;
-    }
-    
-    .text {
-        visibility: hidden;
-        opacity: 0;
-        transition: visibility 0s, opacity 0.5s linear;
-    }
-    
-    .posts:hover .text {
-        visibility: visible;
-        opacity: 1;
-    }
-    
-    .time {
-        margin: 20px auto;
-        width: 70%;
-        background-color: rgba(0, 0, 0, 0.5);
-        /*        border-top: 2px solid rgba(0, 0, 0, 0.1);*/
-        border-right: 2px solid rgba(0, 0, 0, 0.1);
-        border-left: 2px solid rgba(0, 0, 0, 0.1);
-    }
-    
-    .time span {
-        font-size: 20px;
-        padding-top: 2%;
-        padding-left: 1%;
-        color: rgba(255, 80, 0, 1)!important;
-    }
-    
-    .time .spanLeft {
-        color: rgba(255, 80, 0, 1)!important;
-        float: left;
-    }
-    
-    .time .spanRight {
-        color: rgba(255, 102, 0, 1)!important;
-        float: right;
-    }
-    
-    .draftCopy {
-        color: white;
-        background-color: rgba(0, 0, 0, 0.8);
-    }
-    /*Button*/
-    
-    #btnAdd {
-        display: inline-block;
-        margin: 40px auto 40px auto;
-        padding: 30px;
-        background-color: lightgrey;
-        border-radius: 12px;
-        font-size: 1.2em;
-        height: 5%;
-        text-decoration: none;
-        color: black;
-    }
-    
-    #btnAdd:hover {
-        box-shadow: 0 0 2em black;
-        background-color: rgba(173, 216, 230, 0.9);
-        color: darkorange;
-    }
-    
-    .parallax {
-        box-shadow: 0 0 2em black;
-        width: 100%;
-    }
-    /*Forms*/
-    
-    #formPost,
-    #formUsers {
-        box-shadow: 0 0 2em black;
-        background-color: rgba(255, 255, 255, 0.8);
-        border: 3px solid rgba(0, 0, 0, 0.3);
-        padding: 10px;
-        width: 70%;
-        margin: auto;
-        padding-left: 2%;
-        padding-right: 2%;
-    }
-    
-    #formPost label,
-    #formUsers label {
-        display: block;
-        text-align: left;
-        color: black;
-        font-size: 20px;
-        text-align: justify;
-    }
-    
-    #formPost textarea,
-    #formUsers textarea {
-        color: black;
-        width: 100%;
-        height: 200px;
-    }
-    
-    #formPost textarea,
-    #formUsers textarea,
-    #formPost input,
-    #formUsers input {
-        color: black;
-        margin: 10px 0 10px 0;
-    }
-    
-    #formUsers btn,
-    {
-        padding-right: 2%;
-    }
-    /*Create account*/
-    
-    .create {
-        background-image: url("../bg2.jpg");
-    }
-    /*Users*/
-    
-    #users {
-        box-shadow: 0 0 2em black;
-        color: black;
-        background-color: rgba(255, 255, 255, 0.5);
-        border: 3px solid rgba(0, 0, 0, 0.3);
-        padding: 10px;
-        width: 70%;
-        margin: auto;
-    }
-    
-    #users th {
-        padding-bottom: 20px;
-    }
-    
-    #users td {
-        padding: 7px;
-    }
-    
-    #users ul {
-        list-style: none;
-    }
-    
-    #users li {
-        display: inline-block;
-        margin-right: 10px;
-    }
-    
-    #users input,
-    #users a {
-        font-size: 16px;
-        font-family: sans-serif;
-        text-decoration: none;
-        color: black;
-        background-color: white;
-        padding: 2px 7px 2px 7px;
-        border: 1px solid darkgrey;
-        border-radius: 7px;
-    }
-    
-    #users a:hover {
-        background-color: lightblue;
-        color: white;
-    }
-    
-    .editinput {
-        display: inline-flex;
-    }
-    
-    .edit {
-        padding-left: 10%;
-    }
-    
-    .order {
-        padding-bottom: 2%;
-    }
+        
+        #formPost textarea,
+        #formUsers textarea {
+            color: black;
+            width: 100%;
+            height: 200px;
+        }
+        
+        #formPost textarea,
+        #formUsers textarea,
+        #formPost input,
+        #formUsers input {
+            color: black;
+            margin: 10px 0 10px 0;
+        }
+        
+        #formUsers btn,
+        {
+            padding-right: 2%;
+        }
+        /*Create account*/
+        
+        .create {
+            background-image: url("../bg2.jpg");
+        }
+        /*Users*/
+        
+        #users {
+            box-shadow: 0 0 2em black;
+            color: black;
+            background-color: rgba(255, 255, 255, 0.5);
+            border: 3px solid rgba(0, 0, 0, 0.3);
+            /*padding: 10px;*/
+            width: 70%;
+            margin: auto;
+        }
+        
+        #users th {
+            padding-bottom: 20px;
+        }
+        
+        #users td {
+            padding: 7px;
+        }
+        
+        #users ul {
+            list-style: none;
+        }
+        
+        #users li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        
+        #users input,
+        #users a {
+            font-size: 16px;
+            font-family: sans-serif;
+            text-decoration: none;
+            color: black;
+            background-color: white;
+            /*padding: 2px 7px 2px 7px;*/
+            border: 1px solid darkgrey;
+            border-radius: 7px;
+        }
+        
+        #users a:hover {
+            background-color: lightblue;
+            color: white;
+        }
+        
+        .editinput {
+            display: inline-flex;
+        }
+        
+        .edit {
+            padding-left: 10%;
+        }
+        
+        .order {
+            padding-bottom: 2%;
+        }

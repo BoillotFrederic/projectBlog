@@ -26,12 +26,12 @@
       {% endfor %}
       <nav id="navBar">
       <div class="nav-wrapper" >
-       <a href="#" data-activates="slide-out" type="button" class="responsive hide-on-med-and-up button-collapse"><i class=" material-icons">menu</i></a>
-          <ul class="left"> 
+      {# <a href="#" data-activates="slide-out" type="button" class="responsive hide-on-med-and-up button-collapse"><i class=" material-icons">menu</i></a>#}
+          <ul class="left hide-on-small-only"> 
               <li><a class="brand-logo"><img src="{{ asset('logo.jpg')}}" class="logo"/></a></li>  
               </ul>
         {#<div class="nav-wrapper" id="navBar">#}
-          <ul class="right hide-on-med-and-down">
+          <ul class="right">
             {% if app.session.get('connected') %}
               <li><a href="{{ path('post_index') }}">
                 Accueil
@@ -85,7 +85,7 @@
           </form>
         </div>
       </nav>
-            <ul class="show-for-small-only side-nav" id="slide-out">
+{#            <ul class="show-for-small-only side-nav" id="slide-out">
             {% if app.session.get('connected') %}
               <li><a href="{{ path('post_index') }}">
                 Accueil
@@ -118,14 +118,14 @@
               </a>
             </li>
  
-            {% endif %}
+            {% endif %}#}
 {#           <li>
             <a href="{{ path('post_index', { '_locale': 'fr'}) }}"><img src="{{ asset('fr.png')}}"</a>
             </li>
             <li>
             <a href="{{ path('post_index', { '_locale': 'en'}) }}"><img src="{{ asset('en.png')}}"</a>
             </li>#}
-         </ul>
+       {#  </ul>#}
       <main>
         {% block body %}{% endblock %}
       </main>

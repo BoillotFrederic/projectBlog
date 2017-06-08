@@ -2,6 +2,7 @@
 if (document.getElementById('connect') != null) {
     document.getElementById('connect').onclick = function() {
         document.getElementById('connectBox').style.display = 'block';
+        /*document.getElementById('connectBox').style.float = 'left';*/
     }
 
     document.onclick = function(e) {
